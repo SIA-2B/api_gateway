@@ -1,20 +1,20 @@
-export const categoryTypeDef = `
-  type Category {
-      id: Int!
-      name: String!
-  }
-  input CategoryInput {
-      name: String!
-      description: String!
-  }`;
-
-export const categoryQueries = `
-      allCategories: [Category]!
-      categoryById(id: Int!): Category!
+export const cursosTypeDef = `
+type Cursos{    
+    id: String!
+    nombre : String! 
+    creditos : String! 
+    tipologia:String!
+    sede:String!
+    nivel_estudio :String!
+    facultad : String!
+    descripcion : String!
+    prerequisitos: String!
+    codigo : String!         
+}    
   `;
 
-export const categoryMutations = `
-    createCategory(category: CategoryInput!): Category!
-    updateCategory(id: Int!, category: CategoryInput!): Category!
-    deleteCategory(id: Int!): Int
-`;
+export const cursosQueries = `
+      allCursos: [Cursos]!
+      cursosById(id: Int!): Cursos!
+  `;
+
