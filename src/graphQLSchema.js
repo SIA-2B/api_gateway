@@ -4,17 +4,17 @@ import { makeExecutableSchema } from 'graphql-tools';
 
 import { mergeSchemas } from './utilities';
 
-import {
-	gradeMutations,
-	gradeQueries,          
-	gradeTypeDef
-} from './grades/typeDefs';
+// import {
+// 	gradeMutations,
+// 	gradeQueries,          
+// 	gradeTypeDef
+// } from './grades/typeDefs';
 
-import {
-	courseMutations,        
-	courseQueries,
-	courseTypeDef
-} from './courses/typeDefs';
+// import {
+// 	courseMutations,        
+// 	courseQueries,
+// 	courseTypeDef
+// } from './courses/typeDefs';
 
 import {
 	academicInfoMutations,        
@@ -22,43 +22,43 @@ import {
 	academicInfoTypeDef
 } from './academicInfo/typeDefs';
 
-import {
-	authMutations,        
-	authQueries,
-	authTypeDef
-} from './auth/typeDefs';
+// import {
+// 	authMutations,        
+// 	authQueries,
+// 	authTypeDef
+// } from './auth/typeDefs';
 
-import {
-	financialInfoMutations,        
-	financialInfoQueries,
-	financialInfoTypeDef
-} from './financialInfo/typeDefs';
+// import {
+// 	financialInfoMutations,        
+// 	financialInfoQueries,
+// 	financialInfoTypeDef
+// } from './financialInfo/typeDefs';
 
-import {
-	inscriptionMutations,        
-	inscriptionQueries,
-	inscriptionTypeDef
-} from './inscription/typeDefs';
+// import {
+// 	inscriptionMutations,        
+// 	inscriptionQueries,
+// 	inscriptionTypeDef
+// } from './inscription/typeDefs';
 
-import {
-	personalInfoMutations,        
-	personalInfoQueries,
-	personalInfoTypeDef
-} from './personalInfo/typeDefs';
+// import {
+// 	personalInfoMutations,        
+// 	personalInfoQueries,
+// 	personalInfoTypeDef
+// } from './personalInfo/typeDefs';
 
-import gradeResolvers from './grades/resolvers';  
+// import gradeResolvers from './grades/resolvers';  
 
-import courseResolvers from './courses/resolvers';
+// import courseResolvers from './courses/resolvers';
 
 import academicInfoResolvers from './academicInfo/resolvers';
 
-import authResolvers from './auth/resolvers';
+// import authResolvers from './auth/resolvers';
 
-import financialInfoResolvers from './financialInfo/resolvers';
+// import financialInfoResolvers from './financialInfo/resolvers';
 
-import inscriptionResolvers from './inscription/resolvers';
+// import inscriptionResolvers from './inscription/resolvers';
 
-import personalInfoResolvers from './personalInfo/resolvers';
+// import personalInfoResolvers from './personalInfo/resolvers';
 
 
 
@@ -66,31 +66,31 @@ import personalInfoResolvers from './personalInfo/resolvers';
 const mergedTypeDefs = mergeSchemas(
 	[
 		'scalar JSON',
-		gradeTypeDef,
-		courseTypeDef,
+		// gradeTypeDef,
+		// courseTypeDef,
 		academicInfoTypeDef,
-		authTypeDef,
-		financialInfoTypeDef,
-		inscriptionTypeDef,
-		personalInfoTypeDef      
+		// authTypeDef,
+		// financialInfoTypeDef,
+		// inscriptionTypeDef,
+		// personalInfoTypeDef      
 	],
 	[
-		gradeQueries,         
-		courseQueries,
+		// gradeQueries,         
+		// courseQueries,
 		academicInfoQueries,
-		authQueries,
-		financialInfoQueries,
-		inscriptionQueries,
-		personalInfoQueries
+		// authQueries,
+		// financialInfoQueries,
+		// inscriptionQueries,
+		// personalInfoQueries
 	],
 	[
-		gradeMutations,
-		courseMutations,
+		// gradeMutations,
+		// courseMutations,
 		academicInfoMutations,
-		authQueriesMutations,
-		financialInfoMutations,
-		inscriptionMutations,
-		personalInfoMutations      
+		// authQueriesMutations,
+		// financialInfoMutations,
+		// inscriptionMutations,
+		// personalInfoMutations      
 	]
 );
 
@@ -99,12 +99,12 @@ export default makeExecutableSchema({
 	typeDefs: mergedTypeDefs,
 	resolvers: merge(
 		{ JSON: GraphQLJSON }, // allows scalar JSON
-		gradeResolvers,
-		courseResolvers,
+		// gradeResolvers,
+		// courseResolvers,
 		academicInfoResolvers,
-		authResolvers,
-		financialInfoResolvers,
-		inscriptionResolvers,
-		personalInfoResolvers          
+		// authResolvers,
+		// financialInfoResolvers,
+		// inscriptionResolvers,
+		// personalInfoResolvers          
 	)
 });
