@@ -1,20 +1,22 @@
-export const categoryTypeDef = `
-  type Category {
-      id: Int!
-      name: String!
+export const personalInfoTypeDef = `
+  type EPS {
+	idEPS:       Int!
+	razonSocial: String!
+	estadoEPS:   Boolean!
   }
-  input CategoryInput {
-      name: String!
-      description: String!
-  }`;
+  input EPSInput {
+    razonSocial: String!
+	estadoEPS:   Boolean!
+  }
+`;
 
-export const categoryQueries = `
-      allCategories: [Category]!
-      categoryById(id: Int!): Category!
-  `;
+export const personalInfoQueries = `
+    allEPSs: [EPS]!
+    EPSById(id: Int!): EPS!
+`;
 
-export const categoryMutations = `
-    createCategory(category: CategoryInput!): Category!
-    updateCategory(id: Int!, category: CategoryInput!): Category!
-    deleteCategory(id: Int!): Int
+export const personalInfoMutations = `
+    createEPS(eps: EPSInput!): String!
+    updateEPS(id: Int!, eps: EPSInput!): String!
+    deleteEPS(id: Int!): String!
 `;

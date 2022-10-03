@@ -5,18 +5,18 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		allCategories: (_) =>
-			getRequest(URL, ''),
-		categoryById: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'GET'),
+		allEPSs: (_) =>
+			getRequest(`${URL}/EPSs`, ''),
+		EPSById: (_, { id }) =>
+			generalRequest(`${URL}/EPS/${id}`, 'GET'),
 	},
 	Mutation: {
-		createCategory: (_, { category }) =>
-			generalRequest(`${URL}/`, 'POST', category),
-		updateCategory: (_, { id, category }) =>
-			generalRequest(`${URL}/${id}`, 'PUT', category),
-		deleteCategory: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'DELETE')
+		createEPS: (_, { eps }) =>
+			generalRequest(`${URL}/EPS`, 'POST', eps),
+		updateEPS: (_, { id, eps }) =>
+			generalRequest(`${URL}/EPS/${id}`, 'PUT', eps),
+		deleteEPS: (_, { id }) =>
+			generalRequest(`${URL}/EPS/${id}`, 'DELETE'),
 	}
 };
 
