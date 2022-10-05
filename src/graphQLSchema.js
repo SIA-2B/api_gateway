@@ -10,10 +10,13 @@ import {
 	gradeTypeDef
 } from './grades/typeDefs';
 
-import {
-	courseMutations,        
+import {     
+	courseMutations,
 	courseQueries,
-	courseTypeDef
+	courseTypeDef,
+	groupMutations,
+	groupQueries,
+	groupTypeDef
 } from './courses/typeDefs';
 
 import {
@@ -68,6 +71,7 @@ const mergedTypeDefs = mergeSchemas(
 		'scalar JSON',
 		gradeTypeDef,
 		courseTypeDef,
+		groupTypeDef,
 		academicInfoTypeDef,
 		authTypeDef,
 		financialInfoTypeDef,
@@ -77,6 +81,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		gradeQueries,         
 		courseQueries,
+		groupQueries,
 		academicInfoQueries,
 		authQueries,
 		financialInfoQueries,
@@ -86,6 +91,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		gradeMutations,
 		courseMutations,
+		groupMutations,
 		academicInfoMutations,
 		authQueriesMutations,
 		financialInfoMutations,
