@@ -68,7 +68,7 @@ const mergedTypeDefs = mergeSchemas(
 		'scalar JSON',
 		// gradeTypeDef,
 		// courseTypeDef,
-		academicInfoTypeDef,
+		academicInfoTypeDef
 		// authTypeDef,
 		// financialInfoTypeDef,
 		// inscriptionTypeDef,
@@ -77,7 +77,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		// gradeQueries,         
 		// courseQueries,
-		academicInfoQueries,
+		academicInfoQueries
 		// authQueries,
 		// financialInfoQueries,
 		// inscriptionQueries,
@@ -86,7 +86,7 @@ const mergedTypeDefs = mergeSchemas(
 	[
 		// gradeMutations,
 		// courseMutations,
-		academicInfoMutations,
+		academicInfoMutations
 		// authQueriesMutations,
 		// financialInfoMutations,
 		// inscriptionMutations,
@@ -101,7 +101,7 @@ export default makeExecutableSchema({
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		// gradeResolvers,
 		// courseResolvers,
-		academicInfoResolvers,
+		academicInfoResolvers
 		// authResolvers,
 		// financialInfoResolvers,
 		// inscriptionResolvers,
