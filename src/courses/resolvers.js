@@ -12,6 +12,10 @@ const resolvers = {
 			generalRequest(`${URL}/cursos/${id}`, 'GET'),
 		cursosByPlan: (_, { idPlan }) =>
 			generalRequest(`${URL}/cursos/cursosByPlan/${idPlan}`, 'GET'),
+		allGrupos: (_) =>
+			generalRequest(`${URL}/grupos`, 'GET'),
+		gruposByCurso: (_, { idCurso }) =>
+			generalRequest(`${URL}/grupos/${idCurso}`, 'GET'),
 	},
 	Mutation: {
 		createCourses: (_, {cursos}) =>
@@ -20,6 +24,8 @@ const resolvers = {
 			generalRequest(`${URL}/cursos/${id}`, 'PUT', cursos),
 		deleteCourses: (_, { id }) =>
 			generalRequest(`${URL}/cursos/${id}`, 'DELETE'),
+		plusGrupos: (_, { suma }, { idGrupo }) =>
+			generalRequest(`${URL}/grupos/updateCupo/${idGrupo}/${suma}`, 'PUT'),
 	}
 };
 
