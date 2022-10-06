@@ -1,20 +1,19 @@
-export const categoryTypeDef = `
-  type Category {
-      id: Int!
-      name: String!
+export const authTypeDef = `
+  type Auth {
+      token: String!
   }
-  input CategoryInput {
-      name: String!
-      description: String!
+  input AuthInput {
+      username: String!
+      password: String!
   }`;
 
-export const categoryQueries = `
-      allCategories: [Category]!
-      categoryById(id: Int!): Category!
+export const authQueries = `
+      allAuth: [Auth]!
+      AuthById(id: Int!): Auth!
   `;
 
-export const categoryMutations = `
-    createCategory(category: CategoryInput!): Category!
-    updateCategory(id: Int!, category: CategoryInput!): Category!
-    deleteCategory(id: Int!): Int
+export const authMutations = `
+    createAuth(auth: AuthInput!): Auth!
+    updateAuth(id: Int!, auth: AuthInput!): Auth!
+    deleteAuth(id: Int!): Int
 `;

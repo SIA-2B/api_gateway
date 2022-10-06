@@ -5,17 +5,17 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		allCategories: (_) =>
+		allAuth: (_) =>
 			getRequest(URL, ''),
-		categoryById: (_, { id }) =>
+		AuthById: (_, { id }) =>
 			generalRequest(`${URL}/${id}`, 'GET'),
 	},
 	Mutation: {
-		createCategory: (_, { category }) =>
-			generalRequest(`${URL}/`, 'POST', category),
-		updateCategory: (_, { id, category }) =>
-			generalRequest(`${URL}/${id}`, 'PUT', category),
-		deleteCategory: (_, { id }) =>
+		createAuth: (_, { auth }) =>
+			generalRequest(`${URL}/`, 'POST', auth),
+		updateAuth: (_, { id, auth }) =>
+			generalRequest(`${URL}/${id}`, 'PUT', auth),
+		deleteAuth: (_, { id }) =>
 			generalRequest(`${URL}/${id}`, 'DELETE')
 	}
 };
