@@ -1,20 +1,38 @@
-export const categoryTypeDef = `
-  type Category {
-      id: Int!
-      name: String!
+export const financialInfoTypeDef = `
+    type billsInfo {
+    userId: String!,
+    period: String!,
+    year: String!
   }
-  input CategoryInput {
-      name: String!
-      description: String!
-  }`;
-
-export const categoryQueries = `
-      allCategories: [Category]!
-      categoryById(id: Int!): Category!
+  type billsDates{
+    dateOfIssue: String!, 
+    dateTimel: String!, 
+    lateDate: String!
+  }
+  type billsValue{
+    value: String!,
+    discount: String!,
+    totalValue: String!
+  }
+  type UsersBills {
+    number: String!,
+    info: billsInfo!,
+    dates: billsDates!,
+    paymentMethod: String!,
+    enrolmentConcepts: String!,
+    value: billsValue!,
+    remarks: String!,
+    status: String!
+  }
   `;
 
-export const categoryMutations = `
-    createCategory(category: CategoryInput!): Category!
-    updateCategory(id: Int!, category: CategoryInput!): Category!
-    deleteCategory(id: Int!): Int
-`;
+export const financialInfoQueries = `
+      getAllBills(id: String!): [UsersBills!]!      
+      getTest: UsersBills!
+  `;
+
+  export const financialInfoMutations = `
+      doNothing: [UsersBills]!
+  `;
+
+

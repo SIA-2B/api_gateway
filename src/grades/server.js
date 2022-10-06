@@ -1,3 +1,5 @@
-export const url = 'localhost'
-export const port = '8080'
-export const entryPoint = 'api/grades'
+//export const url = '172.17.0.3'
+//export const port = '8082'
+export const url = '5e40-179-1-94-35.ngrok.io'
+export const port = ''
+export const entryPoint = 'api'
