@@ -11,19 +11,32 @@ import {
 } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
-
+console.log(`${URL}/${dFilter}`);
 const resolvers = {
 	Query: {
 		allDatos: (_) =>
 			getRequest(`${URL}/${Datos}`, ''),
-		datosById: (_, { student_id, study_plan_name }) =>
-			generalRequest(`${URL}/${cFilter}`, 'GET'),
+		datosById: (_, { datos }) =>
+			generalRequest(`${URL}/${dFilter}`, 'GET', datos),
+		allCourses: (_) =>
+			getRequest(`${URL}/${Course}`, ''),
+		coursesById: (_, { datos }) =>
+			generalRequest(`${URL}/${cFilter}`, 'GET', datos)
 	},
 	Mutation: {
 		createDatos: (_, { datos }) =>
-			generalRequest(`${URL}/${Datos}`, 'POST'),
-		deleteDatos: (_, { student_id, study_plan_name }) =>
-			generalRequest(`${URL}/${Datos}`, 'DELETE')
+			generalRequest(`${URL}/${Datos}`, 'POST', datos),
+		deleteDatos: (_, { datos }) =>
+			generalRequest(`${URL}/${Datos}`, 'DELETE', datos),
+
+		createCourses: (_, { courses }) =>
+			generalRequest(`${URL}/${Course}`, 'POST', courses),
+		updateCourses: (_, { courses }) =>
+			generalRequest(`${URL}/${Course}`, 'PUT', courses),
+		updateNota: (_, { datos }) =>
+			generalRequest(`${URL}/${PutNota}`, 'PUT', datos),
+		deleteCourses: (_, { courses}) =>
+			generalRequest(`${URL}/${Course}`, 'DELETE', courses)
 	}
 };
 
