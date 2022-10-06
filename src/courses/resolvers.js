@@ -3,7 +3,7 @@ import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
-
+//holaMundo
 const resolvers = {
 	Query: {
 		allCursos: (_) =>
