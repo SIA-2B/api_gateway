@@ -10,7 +10,7 @@ import {
 	PutNota
 } from './server';
 
-const URL = `http://${url}:${port}/${entryPoint}`;
+const URL = `http://${url}/${entryPoint}`;
 console.log(`${URL}/${dFilter}`);
 const resolvers = {
 	Query: {

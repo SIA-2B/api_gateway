@@ -1,3 +1,3 @@
-export const url = '172.17.0.4'
-export const port = '1337'
+export const url = '3c4e-168-176-40-134.ngrok.io'
+export const port = ''
 export const entryPoint = 'inscription'

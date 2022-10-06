@@ -1,3 +1,3 @@
-export const url = '172.17.0.3'
-export const port = '8000'
+export const url = '3ca7-168-176-40-196.ngrok.io'
+export const port = ''
 export const entryPoint = 'api_generate_token'
