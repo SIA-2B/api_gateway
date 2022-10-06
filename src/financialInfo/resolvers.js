@@ -3,20 +3,14 @@ import { url, port, entryPoint } from './server';
 
 const URL = `http://${url}:${port}/${entryPoint}`;
 
+const test = [{"_id":"633876b21dd0f7077a76431f","number":"1000000000","info":{"userId":"1234567890","period":"1","year":"2022"},"dates":{"dateOfIssue":"01-01-2022","dateTimely":"15-01-2022","lateDate":"25-01-2022"},"paymentMethod":"N/A","enrolmentConcepts":"N/A","value":{"value":"1000000","discount":"N/A","totalValue":"1000000"},"remarks":"N/A","status":"Pagado"}];
+
+
 const resolvers = {
 	Query: {
-		allCategories: (_) =>
-			getRequest(URL, ''),
-		categoryById: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'GET'),
-	},
-	Mutation: {
-		createCategory: (_, { category }) =>
-			generalRequest(`${URL}/`, 'POST', category),
-		updateCategory: (_, { id, category }) =>
-			generalRequest(`${URL}/${id}`, 'PUT', category),
-		deleteCategory: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'DELETE')
+		//allBills: (_) =>getRequest(URL, ''),
+		getAllBills: (_, {id}) => generalRequest(`${URL}/${id}`, 'GET'),
+		getTest: (_) => test,			
 	}
 };
 
