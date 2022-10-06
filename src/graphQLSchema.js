@@ -19,11 +19,11 @@ import {
 	groupTypeDef
 } from './courses/typeDefs';
 
-import {
-	academicInfoMutations,        
-	academicInfoQueries,
-	academicInfoTypeDef
-} from './academicInfo/typeDefs';
+// import {
+// 	academicInfoMutations,        
+// 	academicInfoQueries,
+// 	academicInfoTypeDef
+// } from './academicInfo/typeDefs';
 
 import {
 	authMutations,        
@@ -53,7 +53,7 @@ import gradeResolvers from './grades/resolvers';
 
 import courseResolvers from './courses/resolvers';
 
-import academicInfoResolvers from './academicInfo/resolvers';
+//import academicInfoResolvers from './academicInfo/resolvers';
 
 import authResolvers from './auth/resolvers';
 
@@ -72,7 +72,7 @@ const mergedTypeDefs = mergeSchemas(
 		gradeTypeDef,
 		courseTypeDef,
 		groupTypeDef,
-		academicInfoTypeDef,
+		//academicInfoTypeDef,
 		authTypeDef,
 		financialInfoTypeDef,
 		inscriptionTypeDef,
@@ -82,7 +82,7 @@ const mergedTypeDefs = mergeSchemas(
 		gradeQueries,         
 		courseQueries,
 		groupQueries,
-		academicInfoQueries,
+		//academicInfoQueries,
 		authQueries,
 		financialInfoQueries,
 		inscriptionQueries,
@@ -92,8 +92,8 @@ const mergedTypeDefs = mergeSchemas(
 		gradeMutations,
 		courseMutations,
 		groupMutations,
-		academicInfoMutations,
-		authQueriesMutations,
+		//academicInfoMutations,
+		authMutations,
 		financialInfoMutations,
 		inscriptionMutations,
 		personalInfoMutations      
@@ -107,7 +107,7 @@ export default makeExecutableSchema({
 		{ JSON: GraphQLJSON }, // allows scalar JSON
 		gradeResolvers,
 		courseResolvers,
-		academicInfoResolvers,
+		//academicInfoResolvers,
 		authResolvers,
 		financialInfoResolvers,
 		inscriptionResolvers,

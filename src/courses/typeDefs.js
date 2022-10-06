@@ -57,6 +57,6 @@ export const groupQueries = `
 
 export const groupMutations = `
 
-  plusGrupos(id: String!, sum: Int!): Grupos!
+  plusGrupos(idGrupo: String!, suma: Int!): Grupos!
 
 `;

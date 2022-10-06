@@ -24,8 +24,8 @@ const resolvers = {
 			generalRequest(`${URL}/cursos/${id}`, 'PUT', cursos),
 		deleteCourses: (_, { id }) =>
 			generalRequest(`${URL}/cursos/${id}`, 'DELETE'),
-		plusGrupos: (_, { suma }, { idGrupo }) =>
-			generalRequest(`${URL}/grupos/updateCupo/${idGrupo}/${suma}`, 'PUT'),
+		plusGrupos: (_, { idGrupo, suma }) =>
+			generalRequest(`${URL}/grupos/updateCupo/${idGrupo}/${suma}`, 'PUT','GET'),
 	}
 };
 
