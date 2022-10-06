@@ -5,18 +5,15 @@ const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
-		allCategories: (_) =>
-			getRequest(URL, ''),
-		categoryById: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'GET'),
+		getPendingCitations: (_, {student_id}) => 
+			generalRequest(`${URL}/getPendingCitations/?student_id=${student_id}`, ''),
+		getPendingCitationsByCurriculum: (_, {student_id, curriculum_id}) => 
+			generalRequest(`${URL}/getPendingCitationsByCurriculum/?student_id=${student_id}&curriculum_id=${curriculum_id}`, ''),
+		getHistoricCitations: (_, {student_id}) => 
+			generalRequest(`${URL}/getHistoricCitations/?student_id=${student_id}`, ''),
 	},
 	Mutation: {
-		createCategory: (_, { category }) =>
-			generalRequest(`${URL}/`, 'POST', category),
-		updateCategory: (_, { id, category }) =>
-			generalRequest(`${URL}/${id}`, 'PUT', category),
-		deleteCategory: (_, { id }) =>
-			generalRequest(`${URL}/${id}`, 'DELETE')
+		
 	}
 };
 

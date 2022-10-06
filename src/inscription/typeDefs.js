@@ -1,20 +1,30 @@
-export const categoryTypeDef = `
-  type Category {
-      id: Int!
-      name: String!
-  }
-  input CategoryInput {
-      name: String!
-      description: String!
-  }`;
+export const inscriptionTypeDef = `
+    type Citation {
+        id: Int!
+        student_id: Int!
+        curriculum_id: Int!
+        date: String!
+        initial_time: String!
+        final_time: String!
+        pending: Int!
+    }
 
-export const categoryQueries = `
-      allCategories: [Category]!
-      categoryById(id: Int!): Category!
+    type PendingCitations {
+        pendingCitations: [Citation]!
+    }
+
+    type HistoricCitations {
+        historicCitations: [Citation]!
+    }
+    
   `;
 
-export const categoryMutations = `
-    createCategory(category: CategoryInput!): Category!
-    updateCategory(id: Int!, category: CategoryInput!): Category!
-    deleteCategory(id: Int!): Int
+export const inscriptionQueries = `
+      getPendingCitations(student_id: Int!): PendingCitations!
+      getPendingCitationsByCurriculum(student_id: Int!, curriculum_id: Int!): PendingCitations!
+      getHistoricCitations(student_id: Int!): HistoricCitations!
+  `;
+
+export const inscriptionMutations = `
+    doNothing: Citation!
 `;

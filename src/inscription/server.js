@@ -1,3 +1,3 @@
-export const url = 'host.docker.internal'
-export const port = '4000'
-export const entryPoint = 'categories'
+export const url = '172.17.0.4'
+export const port = '1337'
+export const entryPoint = 'inscription'
