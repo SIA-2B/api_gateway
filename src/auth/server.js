@@ -1,3 +1,5 @@
-export const url = '3ca7-168-176-40-196.ngrok.io'
-export const port = ''
+//export const url = '3ca7-168-176-40-196.ngrok.io'
+//export const port = ''
+export const url = 'a2a0-2800-484-758c-505e-589-190b-e1c2-d76f.ngrok.io'
+export const port = '8000'
 export const entryPoint = 'api_generate_token'
