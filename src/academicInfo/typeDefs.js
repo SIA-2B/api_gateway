@@ -34,6 +34,28 @@ export const academicInfoTypeDef = `
       plan: String!
   }
 
+  type Credits {
+      _id: String!
+      dis_op: Int!
+      dis_ob: Int!
+      fund_op: Int!
+      fund_ob: Int!
+      libre: Int!
+      trabajo: Int!
+      nivelacion: Int!
+      cur_dis_op: Int!
+      cur_dis_ob: Int!
+      cur_fund_op: Int!
+      cur_fund_ob: Int!
+      cur_libre: Int!
+      cur_trabajo: Int!
+      cur_nivelacion: Int!
+      excedente: Int!
+      cancelados: Int!
+      avance: Int!
+      disponible: Int!
+  }
+
   input DatosViews {
       student_id: String!
       study_plan_name: String!
@@ -67,6 +89,8 @@ export const academicInfoQueries = `
 
       allCourses: [Courses]!
       coursesById(datos: DatosView!): Courses!
+
+      creditsById(datos: DatosView): Credits!
   `;
 
 export const academicInfoMutations = `

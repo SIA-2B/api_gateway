@@ -7,7 +7,8 @@ import {
 	dFilter, 
 	Course,
 	cFilter,
-	PutNota
+	PutNota,
+	credit
 } from './server';
 
 const URL = `http://${url}/${entryPoint}`;
@@ -22,6 +23,8 @@ const resolvers = {
 			getRequest(`${URL}/${Course}`, ''),
 		coursesById: (_, { datos }) =>
 			generalRequest(`${URL}/${cFilter}`, 'GET', datos)
+		creditsById: (_, { datos }) =>
+			generalRequest(`${URL}/${credit}`, 'GET', datos)
 	},
 	Mutation: {
 		createDatos: (_, { datos }) =>

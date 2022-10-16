@@ -1,0 +1,21 @@
+[33m0e54242[m[33m ([m[1;36mHEAD -> [m[1;32mdevelop[m[33m)[m modificaciones del server
+[33m13788d0[m Funcional en clase
+[33mfcd4434[m academicInfo_ms
+[33mc18ec10[m Adición de un compose para poder correr el apigateway
+[33mf34955b[m Correcciones
+[33m4e0759f[m integración api gateway con auth_ms
+[33m7e9c8bf[m Merge branch 'develop' of https://github.com/SIA-2B/api_gateway into develop
+[33mb228cb8[m Updating Inscription Routes
+[33mca2f50c[m Add files via upload
+[33m6b7b100[m Actualizacion de API (grades)
+[33md288302[m hola mundo
+[33m47cc987[m personalInfo terminado
+[33m18913c5[m Modificaciones para añadir tipedef y queris y mutation de la tabla grupos
+[33maee5495[m GruposFuncionalApiGetway
+[33m9dda356[m GetTablaCursosFuncionales con apiGateway
+[33m005d577[m personalInfo
+[33m377ca32[m[33m ([m[1;31morigin/save[m[33m)[m courses APIGETWAY
+[33m50a4fc1[m servercourses
+[33m599b51b[m Add files via upload
+[33m6842865[m Update README.md
+[33m3c7f92f[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Initial commit

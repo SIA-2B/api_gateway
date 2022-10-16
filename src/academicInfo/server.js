@@ -7,6 +7,7 @@ export const dFilter= 'filter'
 export const Course = 'course'
 export const cFilter = 'filtercourse'
 export const PutNota = 'nota'
+export const credit = 'credits'
 
   // type Course {
   //     codigo_id: String!
