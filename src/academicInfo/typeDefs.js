@@ -69,7 +69,6 @@ export const academicInfoTypeDef = `
       name: String!
       credit: Int!
       periodo: String!
-      nota: Int!
       plan: String!
   }
 
