@@ -22,7 +22,7 @@ const resolvers = {
 		allCourses: (_) =>
 			getRequest(`${URL}/${Course}`, ''),
 		coursesById: (_, { datos }) =>
-			generalRequest(`${URL}/${cFilter}`, 'GET', datos)
+			generalRequest(`${URL}/${cFilter}`, 'GET', datos),
 		creditsById: (_, { datos }) =>
 			generalRequest(`${URL}/${credit}`, 'GET', datos)
 	},
