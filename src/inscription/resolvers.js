@@ -13,7 +13,7 @@ const resolvers = {
 			generalRequest(`${URL}/getHistoricCitations/?student_id=${student_id}`, ''),
 	},
 	Mutation: {
-		
+		registerInscription: (_, {inscription}) => generalRequest(`${URL}/registerInscription`, 'POST', inscription),
 	}
 };
 

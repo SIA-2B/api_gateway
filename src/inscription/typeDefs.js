@@ -9,6 +9,26 @@ export const inscriptionTypeDef = `
         pending: Int!
     }
 
+    type Inscription {
+        citation_id: Int!
+        student_id: Int!
+        inscription_date: String!
+        total_credits: Int!
+        active: Int!
+    }
+
+    type Course {
+        id: Int!
+        credits: Int!
+    }
+
+    input InscritionInput {
+        citation_id: Int!
+        student_id: Int!
+        courses: [Course]!
+    }
+
+
     type PendingCitations {
         pendingCitations: [Citation]!
     }
@@ -26,5 +46,5 @@ export const inscriptionQueries = `
   `;
 
 export const inscriptionMutations = `
-    doNothing: Citation!
+    registerInscription(data: InscriptionInput!): Inscription!
 `;
