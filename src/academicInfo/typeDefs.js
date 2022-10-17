@@ -88,8 +88,7 @@ export const academicInfoQueries = `
 
       allCourses: [Courses]!
       coursesById(datos: DatosView!): Courses!
-
-      creditsById(datos: DatosView): Credits!
+      creditsById(datos: DatosView!): Credits!
   `;
 
 export const academicInfoMutations = `
