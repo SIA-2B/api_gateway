@@ -47,6 +47,7 @@ export const personalInfoTypeDef = `
     apellidoPersona:        String!
     tipoDocumento:          String!
     NUIPPersona:            Float!
+    usernamePersona:        String!
     lugarNacimiento:        Int!
     lugarExpDocumento:      Int!
     estadoCivil:            Int!
@@ -72,6 +73,7 @@ export const personalInfoTypeDef = `
     apellidoPersona:        String!
     tipoDocumento:          String!
     NUIPPersona:            Float!
+    usernamePersona:        String!
     lugarNacimiento:        Int!
     lugarExpDocumento:      Int!
     estadoCivil:            Int!
