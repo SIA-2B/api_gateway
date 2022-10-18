@@ -1,4 +1,4 @@
-export const url = '6b98-200-118-61-100.ngrok.io'
+export const url = 'ca2f-200-118-61-100.ngrok.io'
 export const port = ''
 export const entryPoint = 'api'
 // controlador de los datos
