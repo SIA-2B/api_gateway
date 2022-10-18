@@ -11,10 +11,13 @@ import {
 	credit
 } from './server';
 import personalInfoResolvers from '../personalInfo/resolvers';
-import gradeResolvers from '../grades/resolvers';  
+import gradeResolvers from '../grades/resolvers';
+import producerRabbit from '../producer-rabbitmq';
+
 
 const URL = `http://${url}/${entryPoint}`;
 console.log(`${URL}/${dFilter}`);
+producerRabbit.connect([{"hola": "hola mundo"}]);
 const resolvers = {
 	Query: {
 		allDatos: (_) =>
