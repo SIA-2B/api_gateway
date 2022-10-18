@@ -10,8 +10,6 @@ const rabbitSettings = {
 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 }
 
-connect();
-
 async function connect(persona){
 	
 	const queue = 'employees';
@@ -27,7 +25,7 @@ async function connect(persona){
 		const res = await channel.assertQueue(queue);
 		console.log('Queue Created..');
 
-		for(var msg in student) {
+		for(var msg in persona) {
 			await channel.sendToQueue(queue, Buffer.from(JSON.stringify(student[msg])));
 			console.log(`Message sent to queue ${queue}`);
 		}
