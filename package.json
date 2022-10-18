@@ -31,7 +31,10 @@
 		"koa-router": "^7.3.0",
 		"lodash.merge": "^4.6.0",
 		"request": "^2.83.0",
-		"request-promise-native": "^1.0.5"
+		"request-promise-native": "^1.0.5",
+		"amqplib": "^0.10.3",
+    	"moment": "^2.29.4",
+    	"nodemon": "^2.0.20"
 	},
 	"devDependencies": {
 		"eslint": "^4.16.0",
