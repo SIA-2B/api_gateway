@@ -22,12 +22,6 @@ export const inscriptionTypeDef = `
         credits: Int!
     }
 
-    input InscritionInput {
-        citation_id: Int!
-        student_id: Int!
-        courses: [Course]!
-    }
-
 
     type PendingCitations {
         pendingCitations: [Citation]!
@@ -46,5 +40,5 @@ export const inscriptionQueries = `
   `;
 
 export const inscriptionMutations = `
-    registerInscription(data: InscriptionInput!): Inscription!
+    doNothing: Citation! 
 `;
