@@ -12,15 +12,14 @@ import {
 } from './server';
 import personalInfoResolvers from '../personalInfo/resolvers';
 import gradeResolvers from '../grades/resolvers';
-import {connect} from '../producerRMQ';
+
+import {connectP} from '../producerRMQ';
+import {connectC} from '../consumerRMQ';
 
 //Productor RabbitMQ
-connect([{"hola": "hola mundo"}]);
 
 
 const URL = `http://${url}/${entryPoint}`;
-console.log(`${URL}/${dFilter}`);
-
 
 const resolvers = {
 	Query: {
@@ -28,16 +27,24 @@ const resolvers = {
 			getRequest(`${URL}/${Datos}`, ''),
 		datosById: async (_, { datos }) =>{
 			const student_id = datos['student_id']
-			const responsePersonas = await personalInfoResolvers.Query.personaById(
-				_,
-				{id:student_id}
-			)
-			if(responsePersonas['idPersona'] == student_id){
-				const response = await generalRequest(`${URL}/${dFilter}`, 'GET', datos)
-				return responsePersonas.error || responsePersonas === 404
-				? responsePersonas
-				: response;
+			// const responsePersonas = await personalInfoResolvers.Query.personaById(
+			// 	_,
+			// 	{id:student_id}
+			// )
 
+			await connectP([{"idPersona": student_id}]);
+			// console.log();
+			// if(responsePersonas['idPersona'] == student_id){
+			if(await connectC(student_id)){
+				return await generalRequest(`${URL}/${dFilter}`, 'GET', datos)
+
+				// const response = await generalRequest(`${URL}/${dFilter}`, 'GET', datos)
+				// return responsePersonas.error || responsePersonas === 404
+				// ? responsePersonas
+				// : response;
+			}
+			else {
+				return null
 			}
 		},
 			
@@ -69,7 +76,7 @@ const resolvers = {
 		createCourses: async(_, { courses }) =>{
 			const student_id = courses['student_id']
 			const Periodo = courses['periodo'] //Periodo academicInfo
-			const course_id = courses['codigo_id']
+			
 			const responsePersonas = await personalInfoResolvers.Query.personaById(
 				_,
 				{id:student_id}

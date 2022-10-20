@@ -1,4 +1,6 @@
-services: 
+version: "3.3"
+
+services:
 
   getway_service:
     restart: always
@@ -8,3 +10,6 @@ services:
     ports:
       - 5000:5000
     container_name: getway_service
+networks: 
+  default: 
+    name: bridge

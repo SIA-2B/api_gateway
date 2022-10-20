@@ -20,9 +20,10 @@ const rabbitSettings = {
 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 }
 
-export async function connectP(persona) {
+export async function connectC(persona){
 	
-	const queue = 'employees';
+	const queue = 'direct';
+	let salida = false;
 	console.log(persona)
 	try {
 		const conn = await amqp.connect(rabbitSettings);
@@ -33,12 +34,19 @@ export async function connectP(persona) {
 
 		const res = await channel.assertQueue(queue);
 		console.log('Queue Created..');
-
-		//Envio de personas
-		for(var msg in persona) {
-			await channel.sendToQueue(queue, Buffer.from(JSON.stringify(persona[msg])));
-			console.log(`Message sent to queue ${queue}`);
-		}
+		
+		await channel.consume(queue, message => {
+			let employee = JSON.parse(message.content.toString());
+			// console.log(`Received employee ${employee.student_id}`);
+			console.log(employee);
+			console.log(employee.idPersona, " | ", persona, " - ", employee.idPersona == persona)
+			if(employee.idPersona == persona){
+				salida = employee.volver;
+				console.log(typeof salida, salida);
+				channel.ack(message);
+			}
+		})
+		return salida;
 	} catch(err) {
 		// statements
 		console.error(`Error -> ${err}`);
