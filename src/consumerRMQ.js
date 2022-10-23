@@ -1,54 +1,66 @@
 const amqp = require("amqplib");
-
-// const rabbitSettings = {
-// 	protocol: 'amqp',
-// 	hostname: '172.17.0.3',
-// 	port:5672,
-// 	username: 'ndcontrerasr',
-// 	password: "1234",
-// 	vhost: '/',
-// 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
-// }
+const fs = require('fs'); 
+const jsonData = require('../src/student.json');
 
 const rabbitSettings = {
 	protocol: 'amqp',
-	hostname: '34.151.199.132',
-	port: 5672,
-	username: 'grupo-2b',
-	password: "123456789",
+	hostname: '172.17.0.2',
+	port:5672,
+	username: 'ndcontrerasr',
+	password: "1234",
 	vhost: '/',
 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 }
+// http://34.95.137.222:15672
+// const rabbitSettings = {
+// 	protocol: 'amqp',
+// 	hostname: '34.151.199.132',
+// 	port: 5672,
+// 	username: 'grupo-2b',
+// 	password: "123456789",
+// 	vhost: '/',
+// 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
+// }
+export let salida = "jajaja";
 
-export async function connectC(persona){
-	
+export async function RabbitMQ(persona){
+	await connectP([{"idPersona": persona}]);
+	await connectC(persona);
+	await connectP([{"idPersona": persona}]);
+	await connectC(persona);
+	return salida
+}
+
+async function connectC(persona){
 	const queue = 'direct';
-	let salida = false;
-	console.log(persona)
+	
 	try {
 		const conn = await amqp.connect(rabbitSettings);
-		console.log('connection created ..');
-
 		const channel = await conn.createChannel();
-		console.log('Channel Created..');
-
 		const res = await channel.assertQueue(queue);
-		console.log('Queue Created..');
-		
 		await channel.consume(queue, message => {
 			let employee = JSON.parse(message.content.toString());
-			// console.log(`Received employee ${employee.student_id}`);
-			console.log(employee);
-			console.log(employee.idPersona, " | ", persona, " - ", employee.idPersona == persona)
 			if(employee.idPersona == persona){
-				salida = employee.volver;
-				console.log(typeof salida, salida);
 				channel.ack(message);
+				salida = employee.volver;
 			}
-		})
-		return salida;
+		});
 	} catch(err) {
-		// statements
+		console.error(`Error -> ${err}`);
+	}
+}
+
+async function connectP(persona) {
+	const queue = 'employees';
+
+	try {
+		const conn = await amqp.connect(rabbitSettings);
+		const channel = await conn.createChannel();
+		const res = await channel.assertQueue(queue);
+		for(var msg in persona) {
+			await channel.sendToQueue(queue, Buffer.from(JSON.stringify(persona[msg])));
+		}
+	} catch(err) {
 		console.error(`Error -> ${err}`);
 	}
 }

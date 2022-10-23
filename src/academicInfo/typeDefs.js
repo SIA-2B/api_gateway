@@ -84,11 +84,11 @@ export const academicInfoTypeDef = `
 
 export const academicInfoQueries = `
       allDatos: [Datos]!
-      datosById(datos: DatosView!): Datos!
+      datosById(datos: DatosView!): Datos
 
       allCourses: [Courses]!
-      coursesById(datos: DatosView!): Courses!
-      creditsById(datos: DatosView!): Credits!
+      coursesById(datos: DatosView!): Courses
+      creditsById(datos: DatosView!): Credits
   `;
 
 export const academicInfoMutations = `

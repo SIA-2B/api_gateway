@@ -1,4 +1,6 @@
-export const url = '172.17.0.2:9040'
+// export const url = '172.17.0.2:9040'
+export const url = '172.17.0.3:9040'
+
 export const port = ''
 export const entryPoint = 'api'
 // controlador de los datos

@@ -13,8 +13,8 @@ import {
 import personalInfoResolvers from '../personalInfo/resolvers';
 import gradeResolvers from '../grades/resolvers';
 
-import {connectP} from '../producerRMQ';
-import {connectC} from '../consumerRMQ';
+// import {connectP} from '../producerRMQ';
+import {salida, RabbitMQ} from '../consumerRMQ';
 
 //Productor RabbitMQ
 
@@ -23,49 +23,21 @@ const URL = `http://${url}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
+		// Datos de todos los estudiantes
 		allDatos: (_) =>
 			getRequest(`${URL}/${Datos}`, ''),
-		datosById: async (_, { datos }) =>{
-			const student_id = datos['student_id']
-			// const responsePersonas = await personalInfoResolvers.Query.personaById(
-			// 	_,
-			// 	{id:student_id}
-			// )
-
-			await connectP([{"idPersona": student_id}]);
-			// console.log();
-			// if(responsePersonas['idPersona'] == student_id){
-			if(await connectC(student_id)){
-				return await generalRequest(`${URL}/${dFilter}`, 'GET', datos)
-
-				// const response = await generalRequest(`${URL}/${dFilter}`, 'GET', datos)
-				// return responsePersonas.error || responsePersonas === 404
-				// ? responsePersonas
-				// : response;
-			}
-			else {
-				return null
-			}
-		},
-			
+		// 
+		datosById: async (_, { datos }) => {
+			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${dFilter}`, 'GET', datos) : null},
+		// 
 		allCourses: (_) =>
 			getRequest(`${URL}/${Course}`, ''),
+		// 
 		coursesById: async (_, { datos }) =>{
-			const student_id = datos['student_id']
-			const responsePersonas = await personalInfoResolvers.Query.personaById(
-				_,
-				{id:student_id}
-			)
-			if(responsePersonas['idPersona'] == student_id){
-				const response = await generalRequest(`${URL}/${cFilter}`, 'GET', datos)
-				return responsePersonas.error || responsePersonas === 404
-				? responsePersonas
-				: response;
-
-			}
-		},			
-		creditsById: (_, { datos }) =>
-			generalRequest(`${URL}/${credit}`, 'GET', datos)
+			return await RabbitMQ(datos['student_id']) ? generalRequest(`${URL}/${cFilter}`, 'GET', datos) : null},			
+		// 
+		creditsById: async (_, { datos }) =>{
+			return await RabbitMQ(datos['student_id']) ? generalRequest(`${URL}/${credit}`, 'GET', datos) : null},
 	},
 	Mutation: {
 		createDatos: (_, { datos }) =>
@@ -73,7 +45,7 @@ const resolvers = {
 		deleteDatos: (_, { datos }) =>
 			generalRequest(`${URL}/${Datos}`, 'DELETE', datos),
 
-		createCourses: async(_, { courses }) =>{
+		createCourses: async (_, { courses }) =>{
 			const student_id = courses['student_id']
 			const Periodo = courses['periodo'] //Periodo academicInfo
 			
