@@ -1,53 +1,42 @@
 export const gradeTypeDef = `
   type Grade {
-      id: Int!
-      studentId: Int!
-      courseId: Int!
-      teacherId: Int!
-      gradeFinal: Float!
-      gradePeriod: String!
+    gradeId: Int!
+    studentId: Int!
+    courseId: Int!
+    courseName: String!
+    gradeFinal: Float!
+    gradePeriod: String!
   }
   type Schedule {
-    scheduleMonday: String!
-    scheduleTuesday: String!
-    scheduleWednesday: String!
-    scheduleThursday: String!
-    scheduleFriday: String!
-    scheduleSaturday: String!
-    scheduleClassroomMonday: String!
-    scheduleClassroomTuesday: String!
-    scheduleClassroomWednesday: String!
-    scheduleClassroomThursday: String!
-    scheduleClassroomFriday: String!
-    scheduleClassroomSaturday: String!
-}
+    scheduleId: Int!
+    studentId: Int!
+    time: String!
+    day: String!
+    courseId: Int!
+    teacherId: Int!
+  }
   input GradeInput {
-      studentId: Int!
-      courseId: Int!
-      teacherId: Int!
-      gradeFinal: Float!
-      gradePeriod: String!
+    studentId: Int!
+    courseId: Int!
+    courseName: String!
+    gradeFinal: Float!
+    gradePeriod: String!
   }
   input ScheduleInput {
-      scheduleMonday: String!
-      scheduleTuesday: String!
-      scheduleWednesday: String!
-      scheduleThursday: String!
-      scheduleFriday: String!
-      scheduleSaturday: String!
-      scheduleClassroomMonday: String!
-      scheduleClassroomTuesday: String!
-      scheduleClassroomWednesday: String!
-      scheduleClassroomThursday: String!
-      scheduleClassroomFriday: String!
-      scheduleClassroomSaturday: String!
+    studentId: Int!
+    time: String!
+    day: String!
+    courseId: Int!
+    teacherId: Int!
   }`;
 
 export const gradeQueries = `
-      allGrades: [Grade]!
-      gradeById(id: Int!): Grade!
-      allSchedules: [Schedule]!
-      scheduleById(id: Int!): Schedule!
+    allGrades: [Grade]!
+    gradeById(id: Int!): Grade!
+    allGradesByStudent(id: Int!): [Grade]!
+    allSchedules: [Schedule]!
+    scheduleById(id: Int!): Schedule!
+    allSchedulesByStudent(id: Int!): [Schedule]!
   `;
 
 export const gradeMutations = `
