@@ -1,5 +1,5 @@
 //export const url = '172.17.0.3'
 //export const port = '8082'
-export const url = '03af-168-176-40-153.ngrok.io'
+export const url = 'fa7c-179-1-94-35.ngrok.io'
 export const port = ''
 export const entryPoint = 'api'
