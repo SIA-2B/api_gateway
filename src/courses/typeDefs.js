@@ -5,10 +5,10 @@ type Cursos{
     creditos : Int! 
     tipologia: String!
     sede: String!
-    nivel_estudio :String!
+    nivelestudio :String!
     facultad : String!
     descripcion : String!
-    pre_requisitos: String!
+    prerequisitos: String!
     codigo : Int!         
 }    
 input CursosInput {
