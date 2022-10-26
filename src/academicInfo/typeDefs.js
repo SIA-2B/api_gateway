@@ -28,7 +28,7 @@ export const academicInfoTypeDef = `
       datos_id: String!
       codigo_id: String!
       name: String!
-      credit: String!
+      credit: Int!
       periodo: String!
       nota: Float!
       plan: String!
@@ -85,7 +85,7 @@ export const academicInfoTypeDef = `
 export const academicInfoQueries = `
       allDatos: [Datos]!
       datosById(datos: DatosView!): Datos
-
+      callingById(student_id: String!): [Datos]
       allCourses: [Courses]!
       coursesById(datos: DatosView!): Courses
       creditsById(datos: DatosView!): Credits
@@ -95,7 +95,7 @@ export const academicInfoMutations = `
     createDatos(datos: DatosInput!): String!
     deleteDatos(datos: DatosView!): String!
 
-    createCourses(courses: CourseInput!): String!
+    createCourses(courses: DatosView!): String
     updateCourses(courses: CourseSearch!): String!
     updateNota(datos: DatosViews!): String!
     deleteCourses(courses: CourseSearch!): String!

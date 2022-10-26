@@ -1,23 +1,37 @@
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
+import resolversCourses from '../courses/resolvers';
 
-//const URL = `http://${url}:${port}/${entryPoint}`;
-const URL = `http://${url}/${entryPoint}`;
+const URL = `http://${url}:${port}/${entryPoint}`;
+//const URL = `http://${url}/${entryPoint}`;
 
 const resolvers = {
 	Query: {
 		allGrades: (_) =>
-			generalRequest(`${URL}/grades`, 'GET'),
+			generalRequest(`${URL}/grade`, 'GET'),
 		gradeById: (_, { id }) =>
-			generalRequest(`${URL}/grades/${id}`, 'GET'),
+			generalRequest(`${URL}/grade/${id}`, 'GET'),
+		allGradesByStudent: (_, { id }) =>
+			generalRequest(`${URL}/grade/byStudentId/${id}`, 'GET'),
 		allSchedules: (_) =>
-			generalRequest(`${URL}/schedules`, 'GET'),
+			generalRequest(`${URL}/schedule`, 'GET'),
 		scheduleById: (_, { id }) =>
-			generalRequest(`${URL}/schedules/${id}`, 'GET')
+			generalRequest(`${URL}/schedule/${id}`, 'GET'),
+		allSchedulesByStudent: (_, { id }) =>
+			generalRequest(`${URL}/schedule/byStudentId/${id}`, 'GET'),
 	},
 	Mutation: {
-		createGrade: (_, { grade }) =>
-			generalRequest(`${URL}/grades`, 'POST', grade),
+		createGrade: async (_, { grade }) => {
+			const response = await generalRequest(`${URL}/grades`, 'POST', grade);
+			if (response.error) return response;
+			const responseCourse= await resolversCourses.Query.cursosById(
+				_,
+				{ id: grade.courseId }
+			);
+			return responseCourse.error || responseCourse === 404
+				? responseCourse
+				: response;
+		},
 		updateGrade: (_, { id, grade }) =>
 			generalRequest(`${URL}/grades/${id}`, 'PUT', grade),
 		deleteGrade: (_, { id }) =>

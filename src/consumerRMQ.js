@@ -1,33 +1,31 @@
 const amqp = require("amqplib");
-const fs = require('fs'); 
-const jsonData = require('../src/student.json');
 
-const rabbitSettings = {
-	protocol: 'amqp',
-	hostname: '172.17.0.2',
-	port:5672,
-	username: 'ndcontrerasr',
-	password: "1234",
-	vhost: '/',
-	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
-}
-// http://34.95.137.222:15672
 // const rabbitSettings = {
 // 	protocol: 'amqp',
-// 	hostname: '34.151.199.132',
-// 	port: 5672,
-// 	username: 'grupo-2b',
-// 	password: "123456789",
+// 	hostname: '172.17.0.2',
+// 	port:5672,
+// 	username: 'ndcontrerasr',
+// 	password: "1234",
 // 	vhost: '/',
 // 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 // }
+
+const rabbitSettings = {
+	protocol: 'amqp',
+	hostname: '34.151.219.131',
+	port: 5672,
+	username: 'grupo-2b',
+	password: "123456789",
+	vhost: '/',
+	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
+}
 export let salida = "jajaja";
 
 export async function RabbitMQ(persona){
-	await connectP([{"idPersona": persona}]);
-	await connectC(persona);
-	await connectP([{"idPersona": persona}]);
-	await connectC(persona);
+	await connectP([{"idPersona": `${persona}`}]);
+	await connectC(`${persona}`);
+	await connectP([{"idPersona": `${persona}`}]);
+	await connectC(`${persona}`);
 	return salida
 }
 
