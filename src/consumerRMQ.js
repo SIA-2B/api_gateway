@@ -22,10 +22,10 @@ const rabbitSettings = {
 export let salida = "jajaja";
 
 export async function RabbitMQ(persona){
-	await connectP([{"idPersona": persona}]);
-	await connectC(persona);
-	await connectP([{"idPersona": persona}]);
-	await connectC(persona);
+	await connectP([{"idPersona": `${persona}`}]);
+	await connectC(`${persona}`);
+	await connectP([{"idPersona": `${persona}`}]);
+	await connectC(`${persona}`);
 	return salida
 }
 

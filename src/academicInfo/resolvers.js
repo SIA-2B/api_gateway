@@ -40,46 +40,58 @@ const resolvers = {
 			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${credit}`, 'GET', datos) : null},
 	},
 	Mutation: {
+		//
 		createDatos: (_, { datos }) =>
 			generalRequest(`${URL}/${Datos}`, 'POST', datos),
+		//
 		deleteDatos: (_, { datos }) =>
 			generalRequest(`${URL}/${Datos}`, 'DELETE', datos),
-
+		//
 		createCourses: async (_, { courses }) =>{
-			// const responsePersonas = await personalInfoResolvers.Query.personaById(
-			// 	_,
-			// 	{id:student_id}
-			// )
-			const student_id = parseInt(courses.student_id)
-			if(await RabbitMQ(student_id)){
-				const Materia = await gradeResolvers.Query.gradeById(_,{student})
-				console.log(Materia)
-				return "vista de cursos"
-				// for(let i = 0; i< Materia.length; i++){
-				// 	const Materia_id =  Materia[i]
-				// 	const materia_student_id = Materia_id['studentId'] 
-				// 	const materia_grade_period = Materia_id['gradePeriod']//Periodo Grade_ms
-				// 	const materia_course_id = Materia_id['courseId']
-
-
-					// if(materia_student_id == student_id &&  materia_grade_period == Periodo && materia_course_id == course_id){
-					// 	//console.log(Materia[i])
-					// 	courses['nota'] = Materia_id['gradeFinal']
-					// 	//Falta la parte de Christian (nombreAsig, creditos, tipologia, plan)
-					// 	const response = await generalRequest(`${URL}/${Course}`, 'POST', courses)
-
-					// 	return responsePersonas.error || responsePersonas === 404
-					// 	? responsePersonas
-					// 	: response;
-					// }					
-				// }
-			}			
+			if(await RabbitMQ(courses.student_id)){
+				const Materias = await gradeResolvers.Query.allGradesByStudent(_,{id: parseInt(courses.student_id)})
+				Materias.forEach(async function(materia) {
+					const plan = await courseResolvers.Query.cursosById(_,{id:`${materia.courseId}`})
+					console.log(plan)
+					const curso = {
+						"student_id": courses.student_id,
+					    "study_plan_name": courses.study_plan_name,
+					    "codigo_id": `${materia.courseId}`,
+					    "name": materia.courseName,
+					    "credit": plan.creditos,
+					    "periodo": materia.gradePeriod,
+					    "nota": materia.gradeFinal,
+					    "plan": plan.tipologia
+					}
+					generalRequest(`${URL}/${Course}`, 'POST', curso)
+				})
+				return "Cursos adicionados"
+			}else {return null}
+		},	
+		//
+		updateCourses: async (_, { courses }) => {
+			if(await RabbitMQ(courses.student_id)){
+				const Materias = await gradeResolvers.Query.allGradesByStudent(_,{id: parseInt(courses.student_id)})
+				Materias.forEach(async function(materia) {
+					const plan = await courseResolvers.Query.cursosById(_,{id:`${materia.courseId}`})
+					console.log(plan)
+					const curso = {
+						"student_id": courses.student_id,
+					    "study_plan_name": courses.study_plan_name,
+					    "codigo_id": `${materia.courseId}`,
+					    "name": materia.courseName,
+						"periodo": materia.gradePeriod,
+						"nota": materia.gradeFinal
+					}
+					generalRequest(`${URL}/${Course}`, 'PUT', curso)
+				})
+				return "Cursos actualizados"
+			}else {return null}
 		},
-			
-		updateCourses: (_, { courses }) =>
-			generalRequest(`${URL}/${Course}`, 'PUT', courses),
-		updateNota: (_, { datos }) => //update tabla datos
-			generalRequest(`${URL}/${PutNota}`, 'PUT', datos),
+		//
+		updateNota: async (_, { datos }) => {//update tabla datos
+			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${PutNota}`, 'PUT', datos) : null},
+		//
 		deleteCourses: (_, { courses}) =>
 			generalRequest(`${URL}/${Course}`, 'DELETE', courses)
 	}
