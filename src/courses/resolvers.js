@@ -16,6 +16,8 @@ const resolvers = {
 			generalRequest(`${URL}/grupos`, 'GET'),
 		gruposByCurso: (_, { idCurso }) =>
 			generalRequest(`${URL}/grupos/${idCurso}`, 'GET'),
+		allPlanes: (_) =>
+			generalRequest(`${URL}/planEstudios`, 'GET'),
 	},
 	Mutation: {
 		createCourses: (_, {cursos}) =>

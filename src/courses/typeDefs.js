@@ -10,7 +10,13 @@ type Cursos{
     descripcion : String!
     prerequisitos: String!
     codigo : Int!         
-}    
+}
+type Planes{
+  codigo: String!
+  nombre: String!
+  nivelestudios: String!
+}
+
 input CursosInput {
     id: String!
     nombre : String! 
@@ -23,7 +29,7 @@ export const courseQueries = `
       allCursos: [Cursos]!
       cursosById(id: String!): Cursos!
       cursosByPlan(idPlan: String!): [Cursos]!
-
+      allPlanes: [Planes]!
   `;
 
 export const courseMutations = `
