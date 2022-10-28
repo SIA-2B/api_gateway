@@ -110,7 +110,9 @@ export const personalInfoQueries = `
     etniaById(id: Int!): etnia!
 
     allPersonas: [persona]!
-    personaById(id: Int!): persona!
+    personaById(id: Int!): persona
+    personaByNUIP(nuip: Int!): persona
+    personaByUsername(username: String!): persona
 `;
 
 export const personalInfoMutations = `

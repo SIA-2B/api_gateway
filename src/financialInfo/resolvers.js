@@ -15,7 +15,7 @@ const resolvers = {
 	Query: {
 		//allBills: (_) =>getRequest(URL, ''),
 		getAllBills: async (_, {id}) => {
-			const responsePersonas = await personalInfoResolvers.Query.personaById(
+			const responsePersonas = await personalInfoResolvers.Query.personaByNUIP(
 				_,
 				{id}
 			)

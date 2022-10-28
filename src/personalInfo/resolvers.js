@@ -32,6 +32,10 @@ const resolvers = {
 			getRequest(`${URL}/personas`, ''),
 		personaById: (_, { id }) =>
 			generalRequest(`${URL}/persona/${id}`, 'GET'),
+		personaByNUIP: (_, { nuip }) =>
+			generalRequest(`${URL}/persona/nuip/${nuip}`, 'GET'),
+		personaByUsername: (_, { username }) =>
+			generalRequest(`${URL}/persona/user/${username}`, 'GET'),
 	},
 	Mutation: {
 		createEPS: (_, { eps }) =>

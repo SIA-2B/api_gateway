@@ -17,11 +17,11 @@ const resolvers = {
 	},
 	Mutation: {
 		createAuth: async (_, { auth }) =>{
-			const username = auth.username
-			const responsePersonas = await personalInfoResolvers.Query.allPersonas()
-			let existsUsername = responsePersonas.find(user => user.usernamePersona === username)
+			const userName = auth.username
+			const responsePersonas = await personalInfoResolvers.Query.personaByUsername(_,{username: userName})
+			//let existsUsername = responsePersonas.find(user => user.usernamePersona === userName)
 			//console.log(existsUsername)
-			if(existsUsername){				
+			if(responsePersonas!=null){				
 				const response = await generalRequest(`${URL}/`, 'POST', auth)
 				//console.log(response.data,"Esto es lo que llega del personlaInfo")
 				return responsePersonas.error || responsePersonas === 404
