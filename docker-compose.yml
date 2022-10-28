@@ -1,4 +1,4 @@
-version: "3.3"
+version: latest
 
 services:
 
@@ -10,6 +10,3 @@ services:
     ports:
       - 5000:5000
     container_name: getway_service
-networks: 
-  default: 
-    name: bridge
