@@ -42,7 +42,7 @@ export const groupTypeDef = `
 type Grupos{    
     id: String!
     numero : Int! 
-    id_profesor : String! 
+    idprofesor : String! 
     cupos: Int!
     horario: String!
     lugar :String!
