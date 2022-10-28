@@ -2,9 +2,11 @@ import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
 
 import personalInfoResolvers from '../personalInfo/resolvers';
+import {authInfo} from '../Micro';
 
 //const URL = `http://${url}:${port}/${entryPoint}`;
-const URL = `http://${url}/${entryPoint}`;
+// const URL = `http://${url}/${entryPoint}`;
+const URL = `http://${authInfo}/${entryPoint}`;
 
 const resolvers = {
 	Query: {

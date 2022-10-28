@@ -1,7 +1,11 @@
 import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
 
-const URL = `http://${url}/${entryPoint}`;
+// const URL = `http://${url}/${entryPoint}`;
+import {inscriptionInfo} from '../Micro';
+
+// const URL = `http://${url}/${entryPoint}`;
+const URL = `http://${inscriptionInfo}/${entryPoint}`;
 
 const resolvers = {
 	Query: {

@@ -1,5 +1,5 @@
 // export const url = '172.17.0.2:9040'
-export const url = 'b6c9-200-118-61-100.ngrok.io'
+export const url = '172.17.0.2:9040'
 
 export const port = ''
 export const entryPoint = 'api'

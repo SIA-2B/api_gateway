@@ -2,8 +2,11 @@ import { generalRequest, getRequest } from '../utilities';
 import { url, port, entryPoint } from './server';
 import resolversCourses from '../courses/resolvers';
 
-const URL = `http://${url}:${port}/${entryPoint}`;
-//const URL = `http://${url}/${entryPoint}`;
+// const URL = `http://${url}:${port}/${entryPoint}`;
+import {gradesInfo} from '../Micro';
+
+// const URL = `http://${url}/${entryPoint}`;
+const URL = `http://${gradesInfo}/${entryPoint}`;
 
 const resolvers = {
 	Query: {

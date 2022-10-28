@@ -1,4 +1,5 @@
 const amqp = require("amqplib");
+import {rabbitMQ} from './Micro';
 
 // const rabbitSettings = {
 // 	protocol: 'amqp',
@@ -9,29 +10,38 @@ const amqp = require("amqplib");
 // 	vhost: '/',
 // 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 // }
-
 const rabbitSettings = {
 	protocol: 'amqp',
-	hostname: '34.151.219.131',
+	hostname: rabbitMQ,
 	port: 5672,
 	username: 'grupo-2b',
 	password: "123456789",
 	vhost: '/',
 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 }
-export let salida = "jajaja";
+// const rabbitSettings = {
+// 	protocol: 'amqp',
+// 	hostname: '34.151.215.159',
+// 	port: 5672,
+// 	username: 'grupo-2b',
+// 	password: "123456789",
+// 	vhost: '/',
+// 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
+// }
+export let salida = false;
 
 export async function RabbitMQ(persona){
-	await connectP([{"idPersona": `${persona}`}]);
+    await connectP([{"idPersona": `${persona}`}]);
 	await connectC(`${persona}`);
 	await connectP([{"idPersona": `${persona}`}]);
 	await connectC(`${persona}`);
-	return salida
+	await connectP([{"idPersona": `${persona}`}]);
+	await connectC(`${persona}`);
+	return salida;
 }
 
 async function connectC(persona){
 	const queue = 'direct';
-	
 	try {
 		const conn = await amqp.connect(rabbitSettings);
 		const channel = await conn.createChannel();

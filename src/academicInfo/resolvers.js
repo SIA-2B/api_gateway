@@ -15,8 +15,10 @@ import personalInfoResolvers from '../personalInfo/resolvers';
 import courseResolvers from '../courses/resolvers';
 import gradeResolvers from '../grades/resolvers';
 import {RabbitMQ} from '../consumerRMQ';
-
-const URL = `http://${url}/${entryPoint}`;
+import {academicInfo} from '../Micro';
+console.log(academicInfo)
+// const URL = `http://${url}/${entryPoint}`;
+const URL = `http://${academicInfo}/${entryPoint}`
 
 const resolvers = {
 	Query: {
