@@ -23,6 +23,10 @@ export const academicInfoTypeDef = `
       study_plan_name: String!
   }
 
+  input student {
+      student_id: String!
+  }
+
   type Courses {
       _id: String!
       datos_id: String!
@@ -85,7 +89,7 @@ export const academicInfoTypeDef = `
 export const academicInfoQueries = `
       allDatos: [Datos]!
       datosById(datos: DatosView!): Datos
-      callingById(student_id: String!): [Datos]
+      callingById(datos: student!): [Datos]
       allCourses: [Courses]!
       coursesById(datos: DatosView!): Courses
       creditsById(datos: DatosView!): Credits
