@@ -1,5 +1,5 @@
 export const financialInfoTypeDef = `
-    type billsInfo {
+  type billsInfo {
     userId: String!,
     period: String!,
     year: String!

@@ -9,7 +9,7 @@ import {rabbitMQ} from './Micro';
 // 	password: "1234",
 // 	vhost: '/',
 // 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
-// }
+// // }
 const rabbitSettings = {
 	protocol: 'amqp',
 	hostname: rabbitMQ,

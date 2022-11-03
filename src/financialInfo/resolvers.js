@@ -15,12 +15,12 @@ const resolvers = {
 	Query: {
 		//allBills: (_) =>getRequest(URL, ''),
 		getAllBills: async (_, {id}) => {
-			const responsePersonas = await personalInfoResolvers.Query.personaByNUIP(
+			const responsePersonas = await personalInfoResolvers.Query.personaById(
 				_,
 				{id}
 			)
 
-			if(responsePersonas['NUIPPersona'] == id){
+			if(responsePersonas['idPersona'] == id){
 				const response = await generalRequest(`${URL}/${id}`, 'GET')
 				return responsePersonas.error || responsePersonas === 404
 				? responsePersonas

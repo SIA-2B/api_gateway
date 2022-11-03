@@ -91,7 +91,7 @@ export const academicInfoQueries = `
       datosById(datos: DatosView!): Datos
       callingById(datos: student!): [Datos]
       allCourses: [Courses]!
-      coursesById(datos: DatosView!): Courses
+      coursesById(datos: DatosView!): [Courses]
       creditsById(datos: DatosView!): Credits
   `;
 

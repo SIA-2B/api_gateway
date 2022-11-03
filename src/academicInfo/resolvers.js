@@ -16,7 +16,7 @@ import courseResolvers from '../courses/resolvers';
 import gradeResolvers from '../grades/resolvers';
 import {RabbitMQ} from '../consumerRMQ';
 import {academicInfo} from '../Micro';
-console.log(academicInfo)
+// console.log(academicInfo)
 // const URL = `http://${url}/${entryPoint}`;
 const URL = `http://${academicInfo}/${entryPoint}`
 
