@@ -4,8 +4,8 @@ import { url, port, entryPoint } from './server';
 import {coursesInfo} from '../Micro';
 
 // const URL = `http://${url}/${entryPoint}`;
-const URL = `http://${coursesInfo}/${entryPoint}`;
-// const URL = `http://${url}:${port}/${entryPoint}`;
+// const URL = `http://${coursesInfo}/${entryPoint}`;
+const URL = `http://${url}:${port}/${entryPoint}`;
 
 
 //holaMundo
