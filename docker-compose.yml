@@ -1,4 +1,4 @@
-version: latest
+version: "3.9"
 
 services: 
 
@@ -11,6 +11,8 @@ services:
     ports:
       - 4001:4001
     container_name: servicio_cursos
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     
 
 
@@ -22,6 +24,8 @@ services:
     ports:
       - 5000:5000
     container_name: getway_service
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   auth_service:
     restart: always
@@ -31,6 +35,8 @@ services:
     ports:
       - 8000:8000
     container_name: auth_service
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   personalinfo_service:
     restart: always
@@ -40,6 +46,8 @@ services:
     ports:
       - 3000:3000
     container_name: personal_info
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   financial_service:
     restart: always
@@ -49,6 +57,8 @@ services:
     ports:
       - 5135:80
     container_name: financial_info_ms
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   academic_service:
     restart: always
@@ -58,6 +68,8 @@ services:
     ports:
       - 9040:9040
     container_name: academic_info_ms
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   rabbitmq3:
     container_name: "rabbit"
@@ -70,8 +82,8 @@ services:
       - '5672:5672'
       # HTTP management UI
       - '15672:15672'
-
-
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
   # info_service:
   #   restart: always
