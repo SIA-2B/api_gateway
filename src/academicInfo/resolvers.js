@@ -18,7 +18,8 @@ import {RabbitMQ} from '../consumerRMQ';
 import {academicInfo} from '../Micro';
 // console.log(academicInfo)
 // const URL = `http://${url}/${entryPoint}`;
-const URL = `http://${academicInfo}/${entryPoint}`
+//const URL = `http://${academicInfo}/${entryPoint}`
+const URL = `http://${url}:${port}/${entryPoint}`;
 
 const resolvers = {
 	Query: {

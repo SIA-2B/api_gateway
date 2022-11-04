@@ -1,6 +1,18 @@
 version: latest
 
-services:
+services: 
+
+
+  cursos_service:
+    restart: always
+    build:
+      context: ../courses_ms
+      dockerfile: Dockerfile
+    ports:
+      - 4001:4001
+    container_name: servicio_cursos
+    
+
 
   getway_service:
     restart: always
@@ -10,3 +22,62 @@ services:
     ports:
       - 5000:5000
     container_name: getway_service
+
+  auth_service:
+    restart: always
+    build:
+      context: ../auth_ms
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    container_name: auth_service
+
+  personalinfo_service:
+    restart: always
+    build: 
+      context: ../personal_info_ms
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    container_name: personal_info
+
+  financial_service:
+    restart: always
+    build: 
+      context: ../financial_info_ms
+      dockerfile: Dockerfile
+    ports:
+      - 5135:80
+    container_name: financial_info_ms
+
+  academic_service:
+    restart: always
+    build: 
+      context: ../academic_info_ms
+      dockerfile: Dockerfile
+    ports:
+      - 9040:9040
+    container_name: academic_info_ms
+
+  rabbitmq3:
+    container_name: "rabbit"
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=grupo-2b
+      - RABBITMQ_DEFAULT_PASS=123456789
+    ports:
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+
+
+
+  # info_service:
+  #   restart: always
+  #   build:
+  #     context: ./personal_info_ms-master
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 3000:3000
+  #   container_name: servicio_info
