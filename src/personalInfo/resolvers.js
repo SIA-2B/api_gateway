@@ -3,8 +3,8 @@ import { url, port, entryPoint } from './server';
 
 import {personaInfo} from '../Micro';
 
-// const URL = `http://${url}/${entryPoint}`;
-const URL = `http://${personaInfo}/${entryPoint}`;
+const URL = `http://${url}:${port}/${entryPoint}`;
+//const URL = `http://${personaInfo}/${entryPoint}`;
 
 const resolvers = {
 	Query: {

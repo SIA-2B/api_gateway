@@ -1,3 +1,3 @@
-export const url = 'b182-161-18-183-165.ngrok.io'
-export const port = ''
+export const url = 'host.docker.internal'
+export const port = '3000'
 export const entryPoint = 'api' //NO COLOCAR / A NINGUNO
