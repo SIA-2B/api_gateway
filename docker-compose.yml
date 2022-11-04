@@ -71,6 +71,17 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+  grades_service:
+    restart: always
+    build: 
+      context: ../grades_ms
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    container_name: grades_ms
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   rabbitmq3:
     container_name: "rabbit"
     image: rabbitmq:3-management
