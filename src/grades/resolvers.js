@@ -25,7 +25,7 @@ const resolvers = {
 	},
 	Mutation: {
 		createGrade: async (_, { grade }) => {
-			const response = await generalRequest(`${URL}/grades`, 'POST', grade);
+			const response = await generalRequest(`${URL}/grade`, 'POST', grade);
 			if (response.error) return response;
 			const responseCourse= await resolversCourses.Query.cursosById(
 				_,

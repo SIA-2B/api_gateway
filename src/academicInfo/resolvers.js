@@ -50,7 +50,7 @@ const resolvers = {
 		deleteDatos: (_, { datos }) =>
 			generalRequest(`${URL}/${Datos}`, 'DELETE', datos),
 		//
-		createCourses: async (_, { courses }) =>{
+		createCourse: async (_, { courses }) =>{
 			if(await RabbitMQ(courses.student_id)){
 				const Materias = await gradeResolvers.Query.allGradesByStudent(_,{id: parseInt(courses.student_id)})
 				Materias.forEach(async function(materia) {
