@@ -2,6 +2,20 @@ version: "3.9"
 
 services: 
 
+  rabbitmq3:
+    container_name: "rabbit"
+    image: rabbitmq:3-management
+    environment:
+      - RABBITMQ_DEFAULT_USER=grupo-2b
+      - RABBITMQ_DEFAULT_PASS=123456789
+    ports:
+      # AMQP protocol port
+      - '5672:5672'
+      # HTTP management UI
+      - '15672:15672'
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   cursos_service:
     restart: always
     build:
@@ -35,7 +49,7 @@ services:
 
   personalinfo_service:
     restart: always
-    build: 
+    build:
       context: ../personal_info_ms
       dockerfile: Dockerfile
     ports:
@@ -46,7 +60,7 @@ services:
 
   financial_service:
     restart: always
-    build: 
+    build:
       context: ../financial_info_ms
       dockerfile: Dockerfile
     ports:
@@ -57,7 +71,7 @@ services:
 
   academic_service:
     restart: always
-    build: 
+    build:
       context: ../academic_info_ms
       dockerfile: Dockerfile
     ports:
@@ -68,25 +82,11 @@ services:
 
   grades_service:
     restart: always
-    build: 
+    build:
       context: ../grades_ms
       dockerfile: Dockerfile
     ports:
       - 8082:8082
     container_name: grades_ms
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
-  rabbitmq3:
-    container_name: "rabbit"
-    image: rabbitmq:3-management
-    environment:
-      - RABBITMQ_DEFAULT_USER=grupo-2b
-      - RABBITMQ_DEFAULT_PASS=123456789
-    ports:
-      # AMQP protocol port
-      - '5672:5672'
-      # HTTP management UI
-      - '15672:15672'
     extra_hosts:
       - "host.docker.internal:host-gateway"
