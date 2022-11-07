@@ -1,5 +1,5 @@
-// export const url = '172.17.0.2:9040'
-export const url = 'host.docker.internal'
+export const url = '172.18.0.1'
+// export const url = 'host.docker.internal'
 
 export const port = '9040'
 export const entryPoint = 'api'
