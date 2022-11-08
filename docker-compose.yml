@@ -82,6 +82,17 @@ services:
     extra_hosts:
       - "host.docker.internal:host-gateway"
 
+  inscription_service:
+    restart: always
+    build: 
+      context: ../inscription_ms
+      dockerfile: Dockerfile
+    ports:
+      - 1337:1337
+    container_name: inscription_ms
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   rabbitmq3:
     container_name: "rabbit"
     image: rabbitmq:3-management
