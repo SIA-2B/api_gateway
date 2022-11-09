@@ -57,6 +57,7 @@ export const personalInfoTypeDef = `
     telefonoMovil:          Float!
     telefonoFijo:           Float!
     fechaNacimiento:        String!
+    rolUsuario:             String!
     EPS:                    Int! 
     grupoSangre:            String!
     nivelAcademico:         String!
@@ -83,6 +84,7 @@ export const personalInfoTypeDef = `
     telefonoMovil:          Float!
     telefonoFijo:           Float!
     fechaNacimiento:        String!
+    rolUsuario:             String!
     EPS:                    Int! 
     grupoSangre:            String!
     nivelAcademico:         String!
