@@ -8,35 +8,37 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=grupo-2b
       - RABBITMQ_DEFAULT_PASS=123456789
+    restart: always
     ports:
       # AMQP protocol port
       - '5672:5672'
       # HTTP management UI
       - '15672:15672'
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    networks:
+      frontend:
+        ipv4_address: 172.20.0.6
 
-  cursos_service:
-    restart: always
-    build:
-      context: ../courses_ms
-      dockerfile: Dockerfile
-    ports:
-      - 4001:4001
-    container_name: servicio_cursos
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # cursos_service:
+  #   restart: always
+  #   build:
+  #     context: ../courses_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 4001:4001
+  #   container_name: servicio_cursos
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
-  auth_service:
-    restart: always
-    build:
-      context: ../auth_ms
-      dockerfile: Dockerfile
-    ports:
-      - 8000:8000
-    container_name: auth_service
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # auth_service:
+  #   restart: always
+  #   build:
+  #     context: ../auth_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8000:8000
+  #   container_name: auth_service
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
   personalinfo_service:
     restart: always
@@ -46,19 +48,22 @@ services:
     ports:
       - 3000:3000
     container_name: personal_info
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    networks:
+      frontend:
+        ipv4_address: 172.20.0.3
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
 
-  financial_service:
-    restart: always
-    build:
-      context: ../financial_info_ms
-      dockerfile: Dockerfile
-    ports:
-      - 5135:80
-    container_name: financial_info_ms
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # financial_service:
+  #   restart: always
+  #   build:
+  #     context: ../financial_info_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5135:80
+  #   container_name: financial_info_ms
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
   academic_service:
     restart: always
@@ -68,30 +73,45 @@ services:
     ports:
       - 9040:9040
     container_name: academic_info_ms
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    networks:
+      frontend:
+        ipv4_address: 172.20.0.4
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
 
-  grades_service:
-    restart: always
-    build:
-      context: ../grades_ms
-      dockerfile: Dockerfile
-    ports:
-      - 8082:8082
-    container_name: grades_ms
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-  
-  interface_service:
-    restart: always
-    build:
-      context: ../inscription_ms
-      dockerfile: Dockerfile
-    ports:
-      - "3002:3002"
-    container_name: servicio_interface
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  # grades_service:
+  #   restart: always
+  #   build:
+  #     context: ../grades_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 8082:8082
+  #   container_name: grades_ms
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+
+
+  # inscription_service:
+  #   restart: always
+  #   build: 
+  #     context: ../inscription_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 1337:1337
+  #   container_name: inscription_ms
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
+
+  # interface_service:
+  #   restart: always
+  #   build:
+  #     context: ../interface_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3002:3002"
+  #   container_name: servicio_interface
+  #   extra_hosts:
+  #     - "host.docker.internal:host-gateway"
 
   getway_service:
     restart: always
@@ -101,3 +121,9 @@ services:
     ports:
       - 5000:5000
     container_name: getway_service
+
+networks:
+  frontend:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
