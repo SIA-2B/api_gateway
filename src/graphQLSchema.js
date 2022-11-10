@@ -49,6 +49,12 @@ import {
 	personalInfoTypeDef
 } from './personalInfo/typeDefs';
 
+import {
+	interfaceMutations,        
+	interfaceQueries,
+	interfaceTypeDef
+} from './interface/typeDefs';
+
 import gradeResolvers from './grades/resolvers';  
 
 import courseResolvers from './courses/resolvers';
@@ -63,7 +69,7 @@ import inscriptionResolvers from './inscription/resolvers';
 
 import personalInfoResolvers from './personalInfo/resolvers';
 
-
+import interfaceResolvers from './interface/resolvers';
 
 // merge the typeDefs
 const mergedTypeDefs = mergeSchemas(
@@ -76,7 +82,8 @@ const mergedTypeDefs = mergeSchemas(
 		authTypeDef,
 		financialInfoTypeDef,
 		inscriptionTypeDef,
-		personalInfoTypeDef      
+		personalInfoTypeDef,
+		interfaceTypeDef      
 	],
 	[
 		gradeQueries,         
@@ -86,7 +93,8 @@ const mergedTypeDefs = mergeSchemas(
 		authQueries,
 		financialInfoQueries,
 		inscriptionQueries,
-		personalInfoQueries
+		personalInfoQueries,
+		interfaceQueries
 	],
 	[
 		gradeMutations,
@@ -96,7 +104,8 @@ const mergedTypeDefs = mergeSchemas(
 		authMutations,
 		financialInfoMutations,
 		inscriptionMutations,
-		personalInfoMutations      
+		personalInfoMutations,
+		interfaceMutations    
 	]
 );
 
@@ -111,6 +120,7 @@ export default makeExecutableSchema({
 		authResolvers,
 		financialInfoResolvers,
 		inscriptionResolvers,
-		personalInfoResolvers          
+		personalInfoResolvers,
+		interfaceResolvers        
 	)
 });
