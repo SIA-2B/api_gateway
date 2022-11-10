@@ -3,6 +3,7 @@ import KoaRouter from 'koa-router';
 import koaLogger from 'koa-logger';
 import koaBody from 'koa-bodyparser';
 import koaCors from '@koa/cors';
+import { RabbitMQ } from './producerRMQ';
 
 import { graphiqlKoa, graphqlKoa } from 'apollo-server-koa';
 import graphQLSchema from './graphQLSchema';
@@ -26,6 +27,9 @@ app.use(async (ctx, next) => {
 	}
 	await next();
 });
+
+//routes
+RabbitMQ();
 
 // GraphQL
 const graphql = graphqlKoa((ctx) => ({

@@ -20,7 +20,7 @@ import {academicInfo} from '../Micro';
 // const URL = `http://${url}/${entryPoint}`;
 //const URL = `http://${academicInfo}/${entryPoint}`
 const URL = `http://${url}:${port}/${entryPoint}`;
-
+console.log(`${URL}/${Datos}`);
 const resolvers = {
 	Query: {
 		// Datos de todos los estudiantes

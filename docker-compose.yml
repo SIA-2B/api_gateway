@@ -3,7 +3,6 @@ version: "3.9"
 services: 
 
   rabbitmq3:
-    container_name: "rabbit"
     image: rabbitmq:3-management
     environment:
       - RABBITMQ_DEFAULT_USER=grupo-2b
@@ -15,28 +14,35 @@ services:
       # HTTP management UI
       - '15672:15672'
     networks:
-      frontend:
-        ipv4_address: 172.20.0.6
-
-  # cursos_service:
-  #   restart: always
-  #   build:
-  #     context: ../courses_ms
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 4001:4001
-  #   container_name: servicio_cursos
+      vpcbr:
+        ipv4_address: 172.20.0.2
+    container_name: rabbit
+  
+  cursos_service:
+    restart: always
+    build:
+      context: ../courses_ms
+      dockerfile: Dockerfile
+    ports:
+      - 4001:4001
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.3
+    container_name: servicio_cursos
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
-  # auth_service:
-  #   restart: always
-  #   build:
-  #     context: ../auth_ms
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 8000:8000
-  #   container_name: auth_service
+  auth_service:
+    restart: always
+    build:
+      context: ../auth_ms
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.4
+    container_name: auth_service
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
@@ -47,21 +53,24 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
-    container_name: personal_info
     networks:
-      frontend:
-        ipv4_address: 172.20.0.3
+      vpcbr:
+        ipv4_address: 172.20.0.5
+    container_name: personal_info
     # extra_hosts:
     #   - "host.docker.internal:host-gateway"
 
-  # financial_service:
-  #   restart: always
-  #   build:
-  #     context: ../financial_info_ms
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 5135:80
-  #   container_name: financial_info_ms
+  financial_service:
+    restart: always
+    build:
+      context: ../financial_info_ms
+      dockerfile: Dockerfile
+    ports:
+      - 5135:80
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.6
+    container_name: financial_info_ms
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
@@ -72,33 +81,36 @@ services:
       dockerfile: Dockerfile
     ports:
       - 9040:9040
-    container_name: academic_info_ms
     networks:
-      frontend:
-        ipv4_address: 172.20.0.4
-    # extra_hosts:
-    #   - "host.docker.internal:host-gateway"
+      vpcbr:
+        ipv4_address: 172.20.0.7
+    container_name: academic_info_ms
 
-  # grades_service:
-  #   restart: always
-  #   build:
-  #     context: ../grades_ms
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 8082:8082
-  #   container_name: grades_ms
+  grades_service:
+    restart: always
+    build:
+      context: ../grades_ms
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.8
+    container_name: grades_ms
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
-
-  # inscription_service:
-  #   restart: always
-  #   build: 
-  #     context: ../inscription_ms
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - 1337:1337
-  #   container_name: inscription_ms
+  inscription_service:
+    restart: always
+    build: 
+      context: ../inscription_ms
+      dockerfile: Dockerfile
+    ports:
+      - 1337:1337
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.9
+    container_name: inscription_ms
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
@@ -108,7 +120,10 @@ services:
   #     context: ../interface_ms
   #     dockerfile: Dockerfile
   #   ports:
-  #     - "3002:3002"
+  #     - "3004:3004"
+  #   networks:
+  #     vpcbr:
+  #       ipv4_address: 172.20.0.10
   #   container_name: servicio_interface
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
@@ -120,62 +135,65 @@ services:
       dockerfile: Dockerfile
     ports:
       - 5000:5000
+    networks:
+      vpcbr:
+        ipv4_address: 172.20.0.11
     container_name: getway_service
 
-
-  # seguridad-ldap:
-  #   image: osixia/openldap:1.1.8
-  #   container_name: seguridad_ldap
-  #   environment:
-  #     COMPOSE_HTTP_TIMEOUT: 200
-  #     LDAP_LOG_LEVEL: "256"
-  #     LDAP_ORGANISATION: "Sia Proyecto"
-  #     LDAP_DOMAIN: "sia.unal.edu.co"
-  #     LDAP_BASE_DN: ""
-  #     LDAP_ADMIN_PASSWORD: "admin"
-  #     LDAP_CONFIG_PASSWORD: "config"
-  #     LDAP_READONLY_USER: "false"
-  #     #LDAP_READONLY_USER_USERNAME: "readonly"
-  #     #LDAP_READONLY_USER_PASSWORD: "readonly"
-  #     LDAP_BACKEND: "hdb"
-  #     LDAP_TLS: "true"
-  #     LDAP_TLS_CRT_FILENAME: "ldap.crt"
-  #     LDAP_TLS_KEY_FILENAME: "ldap.key"
-  #     LDAP_TLS_CA_CRT_FILENAME: "ca.crt"
-  #     LDAP_TLS_ENFORCE: "false"
-  #     LDAP_TLS_CIPHER_SUITE: "SECURE256:-VERS-SSL3.0"
-  #     LDAP_TLS_PROTOCOL_MIN: "3.1"
-  #     LDAP_TLS_VERIFY_CLIENT: "demand"
-  #     LDAP_REPLICATION: "false"
-  #     #LDAP_REPLICATION_CONFIG_SYNCPROV: "binddn="cn=admin,cn=config" bindmethod=simple credentials=$LDAP_CONFIG_PASSWORD searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical"
-  #     #LDAP_REPLICATION_DB_SYNCPROV: "binddn="cn=admin,$LDAP_BASE_DN" bindmethod=simple credentials=$LDAP_ADMIN_PASSWORD searchbase="$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical"
-  #     #LDAP_REPLICATION_HOSTS: "#PYTHON2BASH:['ldap://ldap.example.org','ldap://ldap2.example.org']"
-  #     LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
-  #     LDAP_SSL_HELPER_PREFIX: "ldap"
-  #   tty: true
-  #   stdin_open: true
-  #   volumes:
-  #     - /var/lib/ldap
-  #     - /etc/ldap/slapd.d
-  #     - /container/service/slapd/assets/certs/
-  #   ports:
-  #     - "389:389"
-  #     - "636:636"
-  #   hostname: "arqsoft.unal.edu.co"
+  seguridad-ldap:
+    image: osixia/openldap:1.1.8
+    container_name: seguridad_ldap
+    environment:
+      COMPOSE_HTTP_TIMEOUT: 200
+      LDAP_LOG_LEVEL: "256"
+      LDAP_ORGANISATION: "Sia Proyecto"
+      LDAP_DOMAIN: "sia.unal.edu.co"
+      LDAP_BASE_DN: ""
+      LDAP_ADMIN_PASSWORD: "admin"
+      LDAP_CONFIG_PASSWORD: "config"
+      LDAP_READONLY_USER: "false"
+      #LDAP_READONLY_USER_USERNAME: "readonly"
+      #LDAP_READONLY_USER_PASSWORD: "readonly"
+      LDAP_BACKEND: "hdb"
+      LDAP_TLS: "true"
+      LDAP_TLS_CRT_FILENAME: "ldap.crt"
+      LDAP_TLS_KEY_FILENAME: "ldap.key"
+      LDAP_TLS_CA_CRT_FILENAME: "ca.crt"
+      LDAP_TLS_ENFORCE: "false"
+      LDAP_TLS_CIPHER_SUITE: "SECURE256:-VERS-SSL3.0"
+      LDAP_TLS_PROTOCOL_MIN: "3.1"
+      LDAP_TLS_VERIFY_CLIENT: "demand"
+      LDAP_REPLICATION: "false"
+      #LDAP_REPLICATION_CONFIG_SYNCPROV: "binddn="cn=admin,cn=config" bindmethod=simple credentials=$LDAP_CONFIG_PASSWORD searchbase="cn=config" type=refreshAndPersist retry="60 +" timeout=1 starttls=critical"
+      #LDAP_REPLICATION_DB_SYNCPROV: "binddn="cn=admin,$LDAP_BASE_DN" bindmethod=simple credentials=$LDAP_ADMIN_PASSWORD searchbase="$LDAP_BASE_DN" type=refreshAndPersist interval=00:00:00:10 retry="60 +" timeout=1 starttls=critical"
+      #LDAP_REPLICATION_HOSTS: "#PYTHON2BASH:['ldap://ldap.example.org','ldap://ldap2.example.org']"
+      LDAP_REMOVE_CONFIG_AFTER_SETUP: "true"
+      LDAP_SSL_HELPER_PREFIX: "ldap"
+    tty: true
+    stdin_open: true
+    volumes:
+      - /var/lib/ldap
+      - /etc/ldap/slapd.d
+      - /container/service/slapd/assets/certs/
+    ports:
+      - "389:389"
+      - "636:636"
+    hostname: "arqsoft.unal.edu.co"
     
-  # phpldapadmin:
-  #   image: osixia/phpldapadmin:latest
-  #   container_name: sia_ldap_client
-  #   environment:
-  #     PHPLDAPADMIN_LDAP_HOSTS: "seguridad-ldap"
-  #     PHPLDAPADMIN_HTTPS: "false"
-  #   ports:
-  #     - "8085:80"
-  #   links:
-  #     - seguridad-ldap
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: sia_ldap_client
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "seguridad-ldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8085:80"
+    links:
+      - seguridad-ldap
 
 networks:
-  frontend:
+  vpcbr:
     ipam:
       config:
-        - subnet: 172.20.0.0/24
+        - subnet: 172.20.0.0/16
+          gateway: 172.20.0.1

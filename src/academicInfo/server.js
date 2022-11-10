@@ -1,4 +1,4 @@
-export const url = '172.18.0.1'
+export const url = '172.20.0.7'
 // export const url = 'host.docker.internal'
 
 export const port = '9040'
