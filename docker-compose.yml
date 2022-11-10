@@ -114,17 +114,17 @@ services:
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
-  interface_service:
-    restart: always
-    build:
-      context: ../interface_ms
-      dockerfile: Dockerfile
-    ports:
-      - "3004:3004"
-    networks:
-      vpcbr:
-        ipv4_address: 172.20.0.10
-    container_name: servicio_interface
+  # interface_service:
+  #   restart: always
+  #   build:
+  #     context: ../interface_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - "3004:3004"
+  #   networks:
+  #     vpcbr:
+  #       ipv4_address: 172.20.0.10
+  #   container_name: servicio_interface
   #   extra_hosts:
   #     - "host.docker.internal:host-gateway"
 
