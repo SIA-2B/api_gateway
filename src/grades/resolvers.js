@@ -36,9 +36,9 @@ const resolvers = {
 				: response;
 		},
 		updateGrade: (_, { id, grade }) =>
-			generalRequest(`${URL}/grades/${id}`, 'PUT', grade),
+			generalRequest(`${URL}/grade/${id}`, 'PUT', grade),
 		deleteGrade: (_, { id }) =>
-			generalRequest(`${URL}/grades/${id}`, 'DELETE'),
+			generalRequest(`${URL}/grade/${id}`, 'DELETE'),
 		createSchedule: (_, { grade }) =>
 			generalRequest(`${URL}/schedules`, 'POST', grade),
 		updateSchedule: (_, { id, grade }) =>

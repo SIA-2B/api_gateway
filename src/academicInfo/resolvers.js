@@ -16,11 +16,9 @@ import courseResolvers from '../courses/resolvers';
 import gradeResolvers from '../grades/resolvers';
 import {RabbitMQ} from '../consumerRMQ';
 import {academicInfo} from '../Micro';
-// console.log(academicInfo)
 // const URL = `http://${url}/${entryPoint}`;
 //const URL = `http://${academicInfo}/${entryPoint}`
 const URL = `http://${url}:${port}/${entryPoint}`;
-console.log(`${URL}/${Datos}`);
 const resolvers = {
 	Query: {
 		// Datos de todos los estudiantes
@@ -44,18 +42,17 @@ const resolvers = {
 	},
 	Mutation: {
 		//
-		createDatos: (_, { datos }) =>
-			generalRequest(`${URL}/${Datos}`, 'POST', datos),
+		createDatos: (_, { datos }) => {
+			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${Datos}`, 'POST', datos) : null},
 		//
-		deleteDatos: (_, { datos }) =>
-			generalRequest(`${URL}/${Datos}`, 'DELETE', datos),
+		deleteDatos: (_, { datos }) => {
+			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${Datos}`, 'DELETE', datos) : null},
 		//
 		createCourse: async (_, { courses }) =>{
 			if(await RabbitMQ(courses.student_id)){
 				const Materias = await gradeResolvers.Query.allGradesByStudent(_,{id: parseInt(courses.student_id)})
 				Materias.forEach(async function(materia) {
 					const plan = await courseResolvers.Query.cursosById(_,{id:`${materia.courseId}`})
-					console.log(plan)
 					const curso = {
 						"student_id": courses.student_id,
 					    "study_plan_name": courses.study_plan_name,
@@ -64,7 +61,7 @@ const resolvers = {
 					    "credit": plan.creditos,
 					    "periodo": materia.gradePeriod,
 					    "nota": materia.gradeFinal,
-					    "plan": plan.tipologia
+					    "plan": tipologia(plan.tipologia.toUpperCase())
 					}
 					generalRequest(`${URL}/${Course}`, 'POST', curso)
 				})
@@ -76,8 +73,6 @@ const resolvers = {
 			if(await RabbitMQ(courses.student_id)){
 				const Materias = await gradeResolvers.Query.allGradesByStudent(_,{id: parseInt(courses.student_id)})
 				Materias.forEach(async function(materia) {
-					const plan = await courseResolvers.Query.cursosById(_,{id:`${materia.courseId}`})
-					console.log(plan)
 					const curso = {
 						"student_id": courses.student_id,
 					    "study_plan_name": courses.study_plan_name,
@@ -95,9 +90,38 @@ const resolvers = {
 		updateNota: async (_, { datos }) => {//update tabla datos
 			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${PutNota}`, 'PUT', datos) : null},
 		//
-		deleteCourses: (_, { courses}) =>
-			generalRequest(`${URL}/${Course}`, 'DELETE', courses)
+		deleteCourses: (_, { courses}) => {
+			return await RabbitMQ(courses.student_id) ? generalRequest(`${URL}/${Course}`, 'DELETE', courses) : null}
 	}
 };
+
+function tipologia(tipo) {
+	switch (tipo) {
+		case "DISCIPLINARIA OPTATIVA":
+			return "dis_op"
+			break;
+		case "DISCIPLINARIA OBLIGATORIA":
+      		return "dis_ob";
+			break;
+		case "FUNDAMENTAL OPTATIVA":
+      		return "fund_op";
+			break;
+		case "FUNDAMENTAL OBLIGATORIA":
+      		return "fund_ob";
+			break;
+		case "LIBRE ELECCION":
+      		return "libre";
+			break;
+		case "TRABAJO DE GRADO":
+      		return "trabajo";
+			break;
+		case "NIVELATORIA" || "NIVELACION":
+      		return "nivelacion";
+			break;
+		default:
+			return "libre";
+			break;
+	}
+}
 
 export default resolvers;

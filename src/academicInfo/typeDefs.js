@@ -96,7 +96,7 @@ export const academicInfoQueries = `
   `;
 
 export const academicInfoMutations = `
-    createDatos(datos: DatosInput!): String!
+    createDatos(datos: DatosInput!): String
     deleteDatos(datos: DatosView!): String!
 
     createCourse(courses: DatosView!): String
