@@ -54,17 +54,17 @@ services:
         ipv4_address: 172.20.0.5
     container_name: personal_info
 
-  financial_service:
-    restart: always
-    build:
-      context: ../financial_info_ms
-      dockerfile: Dockerfile
-    ports:
-      - 5135:80
-    networks:
-      vpcbr:
-        ipv4_address: 172.20.0.6
-    container_name: financial_info_ms
+  # financial_service:
+  #   restart: always
+  #   build:
+  #     context: ../financial_info_ms
+  #     dockerfile: Dockerfile
+  #   ports:
+  #     - 5135:80
+  #   networks:
+  #     vpcbr:
+  #       ipv4_address: 172.20.0.6
+  #   container_name: financial_info_ms
 
   academic_service:
     restart: always

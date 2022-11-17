@@ -42,10 +42,10 @@ const resolvers = {
 	},
 	Mutation: {
 		//
-		createDatos: (_, { datos }) => {
+		createDatos: async (_, { datos }) => {
 			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${Datos}`, 'POST', datos) : null},
 		//
-		deleteDatos: (_, { datos }) => {
+		deleteDatos: async (_, { datos }) => {
 			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${Datos}`, 'DELETE', datos) : null},
 		//
 		createCourse: async (_, { courses }) =>{
@@ -90,7 +90,7 @@ const resolvers = {
 		updateNota: async (_, { datos }) => {//update tabla datos
 			return await RabbitMQ(datos.student_id) ? generalRequest(`${URL}/${PutNota}`, 'PUT', datos) : null},
 		//
-		deleteCourses: (_, { courses}) => {
+		deleteCourses: async (_, { courses}) => {
 			return await RabbitMQ(courses.student_id) ? generalRequest(`${URL}/${Course}`, 'DELETE', courses) : null}
 	}
 };
