@@ -102,7 +102,6 @@ services:
         ipv4_address: 172.20.0.9
     container_name: inscription_ms
 
-<<<<<<< HEAD
   interface_service:
     restart: always
     build:
@@ -115,21 +114,6 @@ services:
       vpcbr:
         ipv4_address: 172.20.0.10
     container_name: servicio_interface
-=======
-  # interface_service:
-  #   restart: always
-  #   build:
-  #     context: ../interface_ms
-  #     dockerfile: Dockerfile
-  #   ports:
-  #     - "3004:3004"
-  #   networks:
-  #     vpcbr:
-  #       ipv4_address: 172.20.0.10
-  #   container_name: servicio_interface
-  #   extra_hosts:
-  #     - "host.docker.internal:host-gateway"
->>>>>>> 9a7a9e18f08ee7bb03d59de95477090e2a404171
 
   getway_service:
     restart: always
