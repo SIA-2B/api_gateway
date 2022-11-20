@@ -1,8 +1,8 @@
 const amqp = require("amqplib");
-
+// hostname: '172.20.0.2',
 const rabbitSettings = {
 	protocol: 'amqp',
-	hostname: '172.20.0.2',
+	hostname: '35.231.248.171',
 	port: 5672,
 	username: 'grupo-2b',
 	password: "123456789",
