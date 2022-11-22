@@ -1,5 +1,5 @@
 const amqp = require("amqplib");
-import {rabbitMQ} from '../Micro';
+import {rabbitMQ} from './Micro';
 
 const rabbitSettings = {
 	protocol: 'amqp',
