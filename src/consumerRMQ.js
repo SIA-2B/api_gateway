@@ -1,8 +1,10 @@
 const amqp = require("amqplib");
-// hostname: '172.20.0.2',
+import {rabbitMQ} from '../Micro';
+
 const rabbitSettings = {
 	protocol: 'amqp',
-	hostname: '35.231.248.171',
+	// hostname: '35.231.248.171',
+	hostname: rabbitMQ,
 	port: 5672,
 	username: 'grupo-2b',
 	password: "123456789",
