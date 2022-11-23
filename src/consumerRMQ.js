@@ -3,7 +3,6 @@ import {rabbitMQ} from './Micro';
 
 const rabbitSettings = {
 	protocol: 'amqp',
-	// hostname: '35.231.248.171',
 	hostname: rabbitMQ,
 	port: 5672,
 	username: 'grupo-2b',
