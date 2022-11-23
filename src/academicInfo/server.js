@@ -1,5 +1,5 @@
 // export const url = '172.20.0.7'
-export const url = '10.44.14.100'
+export const url = '10.92.12.100'
 
 // export const url = 'host.docker.internal'
 
