@@ -1,4 +1,4 @@
-export const url = '10.116.8.6'
+export const url = '10.116.10.96'
 // export const url = '172.20.0.4' // 'host.docker.internal'
 //export const url = 'cc72-2800-484-758c-505e-f0fc-c33d-9182-7d25.ngrok.io'
 export const port = '8000'
