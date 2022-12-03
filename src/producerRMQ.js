@@ -1,33 +1,16 @@
 const amqp = require("amqplib");
-import {rabbitMQ} from './Micro';
+import {rabbitMQ, pass} from './Micro';
 
-// const rabbitSettings = {
-// 	protocol: 'amqp',
-// 	hostname: '172.17.0.2',
-// 	port:5672,
-// 	username: 'ndcontrerasr',
-// 	password: "1234",
-// 	vhost: '/',
-// 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
-// // }
 const rabbitSettings = {
 	protocol: 'amqp',
 	hostname: rabbitMQ,
 	port: 5672,
 	username: 'grupo-2b',
-	password: "123456789",
+	password: pass,
 	vhost: '/',
 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
 }
-// const rabbitSettings = {
-// 	protocol: 'amqp',
-// 	hostname: '34.151.215.159',
-// 	port: 5672,
-// 	username: 'grupo-2b',
-// 	password: "123456789",
-// 	vhost: '/',
-// 	authMechanism: ['PLAIN', 'AMQPLAIN','EXTERNAL']
-// }
+
 export async function RabbitMQ(){
     await connectP();
 	await connectC();
