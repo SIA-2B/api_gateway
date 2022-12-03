@@ -7,4 +7,4 @@ export const academicInfo = "172.17.0.3:9040"; //si
 export const gradesInfo = "5afe-179-1-94-35.ngrok.io";
 // export const rabbitMQ = "172.20.0.6"; //si
 export const rabbitMQ = "10.116.3.139";
-export const pass = "4PfTQTXD3V8S";
+export const pass = "123456789";
